@@ -1,0 +1,24 @@
+# Python
+__pycache__/
+*.py[cod]
+*.egg-info/
+.venv/
+venv/
+
+# Node
+node_modules/
+dist/
+
+# Uploads
+backend/uploads/audio/*
+backend/uploads/images/*
+backend/uploads/videos/*
+backend/uploads/output/*
+!backend/uploads/**/.gitkeep
+
+# IDE
+.vscode/
+.idea/
+
+# OS
+.DS_Store
