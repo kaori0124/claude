@@ -31,6 +31,11 @@ class UploadResponse(BaseModel):
     size: int
 
 
+class RenderResponse(BaseModel):
+    project_id: str
+    status: str
+
+
 class ProjectStatus(BaseModel):
     status: str  # "pending" | "processing" | "done" | "error"
     progress: float = 0.0

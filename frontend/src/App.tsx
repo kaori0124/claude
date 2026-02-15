@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useCallback, useRef, useState } from "react";
 import {
   api,
   FontStyle,
@@ -30,6 +30,40 @@ export default function App() {
   const [progress, setProgress] = useState(0);
   const [outputUrl, setOutputUrl] = useState<string | null>(null);
   const [error, setError] = useState<string | null>(null);
+  const pollingRef = useRef<number | null>(null);
+
+  const stopPolling = useCallback(() => {
+    if (pollingRef.current !== null) {
+      clearInterval(pollingRef.current);
+      pollingRef.current = null;
+    }
+  }, []);
+
+  const pollStatus = useCallback(
+    (projectId: string) => {
+      pollingRef.current = window.setInterval(async () => {
+        try {
+          const status = await api.getStatus(projectId);
+          setProgress(status.progress);
+
+          if (status.status === "done") {
+            stopPolling();
+            setRendering(false);
+            setOutputUrl(status.output_url);
+          } else if (status.status === "error") {
+            stopPolling();
+            setRendering(false);
+            setError(status.error || "レンダリングに失敗しました");
+          }
+        } catch {
+          stopPolling();
+          setRendering(false);
+          setError("ステータスの取得に失敗しました");
+        }
+      }, 1000);
+    },
+    [stopPolling]
+  );
 
   const handleRender = async () => {
     if (!audio) return;
@@ -38,6 +72,7 @@ export default function App() {
     setProgress(0);
     setOutputUrl(null);
     setError(null);
+    stopPolling();
 
     try {
       const result = await api.renderVideo({
@@ -48,22 +83,17 @@ export default function App() {
         resolution: [1920, 1080],
       });
 
-      if (result.status === "error") {
-        setError(result.error || "レンダリングに失敗しました");
-      } else if (result.output_url) {
-        setOutputUrl(result.output_url);
-      }
-      setProgress(result.progress);
+      pollStatus(result.project_id);
     } catch (err) {
+      setRendering(false);
       setError(
         err instanceof Error ? err.message : "レンダリングに失敗しました"
       );
-    } finally {
-      setRendering(false);
     }
   };
 
-  const canRender = audio !== null && lyrics.length > 0 && lyrics.some((l) => l.text.trim());
+  const canRender =
+    audio !== null && lyrics.length > 0 && lyrics.some((l) => l.text.trim());
 
   return (
     <div>

@@ -28,6 +28,11 @@ export interface ProjectConfig {
   resolution: [number, number];
 }
 
+export interface RenderResponse {
+  project_id: string;
+  status: string;
+}
+
 export interface ProjectStatus {
   status: "pending" | "processing" | "done" | "error";
   progress: number;
@@ -59,7 +64,7 @@ export const api = {
   uploadImage: (file: File) => uploadFile("image", file),
   uploadVideo: (file: File) => uploadFile("video", file),
 
-  async renderVideo(config: ProjectConfig): Promise<ProjectStatus> {
+  async renderVideo(config: ProjectConfig): Promise<RenderResponse> {
     const res = await fetch(`${BASE}/project/render`, {
       method: "POST",
       headers: { "Content-Type": "application/json" },
