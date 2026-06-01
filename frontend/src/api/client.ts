@@ -82,4 +82,23 @@ export const api = {
     if (!res.ok) throw new Error("ステータス取得に失敗しました");
     return res.json();
   },
+
+  async searchPexelsVideos(query: string): Promise<PexelsVideo[]> {
+    const res = await fetch(`${BASE}/pexels/search?q=${encodeURIComponent(query)}&per_page=6`);
+    if (!res.ok) {
+      const err = await res.json();
+      throw new Error(err.detail || "Pexels検索に失敗しました");
+    }
+    const data = await res.json();
+    return data.videos;
+  },
 };
+
+export interface PexelsVideo {
+  id: number;
+  thumbnail: string;
+  duration: number;
+  url: string;
+  width: number;
+  height: number;
+}

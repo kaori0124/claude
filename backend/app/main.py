@@ -3,7 +3,7 @@ from fastapi.middleware.cors import CORSMiddleware
 from fastapi.staticfiles import StaticFiles
 
 from .config import OUTPUT_DIR
-from .routers import project, upload
+from .routers import pexels, project, upload
 
 app = FastAPI(title="カラオケ動画作成ツール", version="1.0.0")
 
@@ -17,6 +17,7 @@ app.add_middleware(
 
 app.include_router(upload.router)
 app.include_router(project.router)
+app.include_router(pexels.router)
 
 app.mount("/output", StaticFiles(directory=str(OUTPUT_DIR)), name="output")
 

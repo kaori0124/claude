@@ -1,6 +1,9 @@
+import os
 from pathlib import Path
 
 BASE_DIR = Path(__file__).resolve().parent.parent
+
+PEXELS_API_KEY = os.environ.get("PEXELS_API_KEY", "")
 UPLOAD_DIR = BASE_DIR / "uploads"
 AUDIO_DIR = UPLOAD_DIR / "audio"
 IMAGE_DIR = UPLOAD_DIR / "images"
