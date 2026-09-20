@@ -1,0 +1,6 @@
+# 基本（献立生成・買い物リスト）
+pyyaml>=6.0
+
+# Googleカレンダー連携を使う場合のみ必要
+# pip install google-api-python-client google-auth-httplib2 google-auth-oauthlib
+

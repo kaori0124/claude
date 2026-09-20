@@ -20,5 +20,10 @@ backend/uploads/output/*
 .vscode/
 .idea/
 
+# Meal Planner
+meal-planner/credentials.json
+meal-planner/token.json
+meal-planner/plan.json
+
 # OS
 .DS_Store
