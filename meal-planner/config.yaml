@@ -1,397 +1,389 @@
 # ============================================================
 # 献立プランナー設定ファイル
 # ============================================================
-# このファイルを編集して、家族の好みやよく作る料理を登録してください。
 
 # --- 家族情報 ---
 family:
-  members:
-    - name: "パパ"
-      likes: ["カレー", "唐揚げ", "餃子", "ラーメン"]
-      dislikes: ["セロリ"]
-    - name: "ママ"
-      likes: ["パスタ", "サラダ", "魚料理"]
-      dislikes: []
-    - name: "子供1"
-      likes: ["ハンバーグ", "オムライス", "唐揚げ"]
-      dislikes: ["ピーマン", "なす"]
+  members: ["自分", "夫", "娘(11歳)"]
 
 # --- 食事の設定 ---
 meals:
-  # 1食あたりの品数
-  dishes_per_meal:
-    weekday_dinner: 3   # 平日夕食: 主菜 + 副菜 + 汁物
-    weekend_dinner: 4   # 週末夕食: 主菜 + 副菜2品 + 汁物
-    lunch: 1             # 昼食（お弁当向け）
+  # 対象: 平日（月〜金）の晩ごはんのみ
+  days: 5
+  # 構成: メイン + サラダ（必須）+ 副菜（できれば）
+  # 白米なし、丼もの・麺類はOK
 
-  # 対象の食事（カレンダーに登録するもの）
-  target_meals:
-    - dinner  # 夕食のみ生成する場合
-
-# --- よく作る料理データベース ---
-# category: main(主菜) / side(副菜) / soup(汁物)
-# effort: easy(簡単) / normal(普通) / hard(手間がかかる)
-# time_minutes: 調理時間（分）
+# --- 料理データベース ---
+# category: main / salad / side
+# effort: easy / normal
+# time_minutes: 調理時間（分）。0 = 買ってくるだけ
+# seasons: 旬の季節 (spring/summer/autumn/winter)。省略 = 通年
 dishes:
-  # === 主菜 ===
-  - name: "カレーライス"
-    category: "main"
-    effort: "normal"
-    time_minutes: 45
-    tags: ["定番", "子供好き", "作り置き可"]
-    ingredients:
-      - { name: "豚肉（カレー用）", amount: "300g", section: "肉" }
-      - { name: "じゃがいも", amount: "3個", section: "野菜" }
-      - { name: "にんじん", amount: "1本", section: "野菜" }
-      - { name: "玉ねぎ", amount: "2個", section: "野菜" }
-      - { name: "カレールー", amount: "1箱", section: "調味料" }
 
-  - name: "ハンバーグ"
-    category: "main"
-    effort: "normal"
-    time_minutes: 40
-    tags: ["定番", "子供好き"]
-    ingredients:
-      - { name: "合いびき肉", amount: "400g", section: "肉" }
-      - { name: "玉ねぎ", amount: "1個", section: "野菜" }
-      - { name: "パン粉", amount: "1/2カップ", section: "乾物" }
-      - { name: "卵", amount: "1個", section: "卵・乳製品" }
-
-  - name: "唐揚げ"
-    category: "main"
-    effort: "normal"
-    time_minutes: 30
-    tags: ["定番", "子供好き", "お弁当向き"]
-    ingredients:
-      - { name: "鶏もも肉", amount: "500g", section: "肉" }
-      - { name: "しょうが", amount: "1かけ", section: "野菜" }
-      - { name: "にんにく", amount: "1かけ", section: "野菜" }
-      - { name: "片栗粉", amount: "適量", section: "乾物" }
-
-  - name: "餃子"
-    category: "main"
-    effort: "hard"
-    time_minutes: 60
-    tags: ["定番", "週末向き"]
-    ingredients:
-      - { name: "豚ひき肉", amount: "300g", section: "肉" }
-      - { name: "キャベツ", amount: "1/4個", section: "野菜" }
-      - { name: "ニラ", amount: "1束", section: "野菜" }
-      - { name: "餃子の皮", amount: "1袋", section: "その他" }
-
-  - name: "鮭の塩焼き"
+  # =========================================
+  #  メイン：自分で作るもの
+  # =========================================
+  - name: "チンジャオロース"
     category: "main"
     effort: "easy"
     time_minutes: 15
-    tags: ["魚", "簡単", "ヘルシー"]
+    tags: ["中華"]
     ingredients:
-      - { name: "鮭切り身", amount: "4切れ", section: "魚" }
-
-  - name: "豚の生姜焼き"
-    category: "main"
-    effort: "easy"
-    time_minutes: 15
-    tags: ["定番", "簡単"]
-    ingredients:
-      - { name: "豚ロース薄切り", amount: "400g", section: "肉" }
-      - { name: "玉ねぎ", amount: "1個", section: "野菜" }
-      - { name: "しょうが", amount: "1かけ", section: "野菜" }
-
-  - name: "オムライス"
-    category: "main"
-    effort: "normal"
-    time_minutes: 30
-    tags: ["子供好き", "定番"]
-    ingredients:
-      - { name: "鶏もも肉", amount: "200g", section: "肉" }
-      - { name: "玉ねぎ", amount: "1個", section: "野菜" }
-      - { name: "卵", amount: "6個", section: "卵・乳製品" }
-      - { name: "ケチャップ", amount: "適量", section: "調味料" }
-
-  - name: "麻婆豆腐"
-    category: "main"
-    effort: "easy"
-    time_minutes: 20
-    tags: ["中華", "簡単"]
-    ingredients:
-      - { name: "豚ひき肉", amount: "200g", section: "肉" }
-      - { name: "豆腐", amount: "2丁", section: "豆腐" }
-      - { name: "長ねぎ", amount: "1本", section: "野菜" }
-      - { name: "豆板醤", amount: "大さじ1", section: "調味料" }
-
-  - name: "パスタ（ミートソース）"
-    category: "main"
-    effort: "normal"
-    time_minutes: 30
-    tags: ["洋食", "子供好き"]
-    ingredients:
-      - { name: "合いびき肉", amount: "300g", section: "肉" }
-      - { name: "玉ねぎ", amount: "1個", section: "野菜" }
-      - { name: "トマト缶", amount: "1缶", section: "缶詰" }
-      - { name: "パスタ", amount: "400g", section: "乾物" }
+      - { name: "牛肉（細切り用）", amount: "250g", section: "肉" }
+      - { name: "ピーマン", amount: "4個", section: "野菜" }
+      - { name: "たけのこ水煮", amount: "1袋", section: "野菜" }
 
   - name: "肉じゃが"
     category: "main"
     effort: "normal"
-    time_minutes: 35
-    tags: ["和食", "定番", "作り置き可"]
+    time_minutes: 25
+    tags: ["和食", "定番"]
     ingredients:
-      - { name: "豚バラ薄切り", amount: "300g", section: "肉" }
-      - { name: "じゃがいも", amount: "4個", section: "野菜" }
+      - { name: "豚バラ薄切り", amount: "250g", section: "肉" }
+      - { name: "じゃがいも", amount: "3個", section: "野菜" }
       - { name: "にんじん", amount: "1本", section: "野菜" }
       - { name: "玉ねぎ", amount: "1個", section: "野菜" }
       - { name: "しらたき", amount: "1袋", section: "その他" }
 
-  - name: "回鍋肉"
+  - name: "オムレツ（じゃがいもウィンナー）"
     category: "main"
     effort: "easy"
     time_minutes: 20
-    tags: ["中華", "簡単"]
+    tags: ["洋食"]
     ingredients:
-      - { name: "豚バラ薄切り", amount: "300g", section: "肉" }
-      - { name: "キャベツ", amount: "1/4個", section: "野菜" }
-      - { name: "ピーマン", amount: "3個", section: "野菜" }
-      - { name: "甜麺醤", amount: "大さじ2", section: "調味料" }
+      - { name: "卵", amount: "6個", section: "卵・乳製品" }
+      - { name: "じゃがいも", amount: "2個", section: "野菜" }
+      - { name: "ウィンナー", amount: "1袋", section: "肉加工品" }
+      - { name: "ピザ用チーズ", amount: "適量", section: "卵・乳製品" }
 
-  - name: "焼き魚（さば）"
-    category: "main"
-    effort: "easy"
-    time_minutes: 15
-    tags: ["魚", "簡単", "ヘルシー"]
-    ingredients:
-      - { name: "さば切り身", amount: "4切れ", section: "魚" }
-
-  - name: "チキン南蛮"
+  - name: "唐揚げ（一枚揚げ）"
     category: "main"
     effort: "normal"
-    time_minutes: 35
-    tags: ["子供好き", "ボリューム"]
+    time_minutes: 25
+    tags: ["定番"]
     ingredients:
-      - { name: "鶏むね肉", amount: "2枚", section: "肉" }
-      - { name: "卵", amount: "2個", section: "卵・乳製品" }
-      - { name: "玉ねぎ", amount: "1/2個", section: "野菜" }
-      - { name: "マヨネーズ", amount: "適量", section: "調味料" }
+      - { name: "鶏もも肉", amount: "2枚(500g)", section: "肉" }
+      - { name: "しょうが", amount: "1かけ", section: "野菜" }
+      - { name: "にんにく", amount: "1かけ", section: "野菜" }
+      - { name: "片栗粉", amount: "適量", section: "乾物" }
 
-  - name: "野菜炒め"
+  - name: "鮭のホイル焼き"
+    category: "main"
+    effort: "easy"
+    time_minutes: 20
+    tags: ["魚", "ヘルシー"]
+    seasons: ["autumn", "winter"]
+    ingredients:
+      - { name: "鮭切り身", amount: "3切れ", section: "魚" }
+      - { name: "えのき", amount: "1袋", section: "野菜" }
+      - { name: "玉ねぎ", amount: "1/2個", section: "野菜" }
+      - { name: "バター", amount: "適量", section: "卵・乳製品" }
+
+  - name: "牛丼"
     category: "main"
     effort: "easy"
     time_minutes: 15
-    tags: ["簡単", "ヘルシー"]
+    tags: ["丼もの", "定番"]
     ingredients:
-      - { name: "豚こま切れ", amount: "200g", section: "肉" }
+      - { name: "牛こま切れ", amount: "300g", section: "肉" }
+      - { name: "玉ねぎ", amount: "1個", section: "野菜" }
+
+  - name: "鍋"
+    category: "main"
+    effort: "easy"
+    time_minutes: 15
+    tags: ["定番"]
+    seasons: ["autumn", "winter"]
+    ingredients:
+      - { name: "鍋用カット野菜", amount: "1袋", section: "野菜" }
+      - { name: "豚バラ薄切り", amount: "300g", section: "肉" }
+      - { name: "豆腐", amount: "1丁", section: "豆腐" }
+      - { name: "鍋つゆ", amount: "1袋", section: "調味料" }
+
+  # =========================================
+  #  メイン：市販の素を使うもの
+  # =========================================
+  - name: "麻婆豆腐"
+    category: "main"
+    effort: "easy"
+    time_minutes: 15
+    tags: ["中華", "市販の素"]
+    ingredients:
+      - { name: "豚ひき肉", amount: "200g", section: "肉" }
+      - { name: "豆腐", amount: "2丁", section: "豆腐" }
+      - { name: "麻婆豆腐の素", amount: "1箱", section: "調味料" }
+
+  - name: "カレー"
+    category: "main"
+    effort: "easy"
+    time_minutes: 25
+    tags: ["定番", "市販の素"]
+    ingredients:
+      - { name: "豚肉（カレー用）", amount: "300g", section: "肉" }
+      - { name: "じゃがいも", amount: "2個", section: "野菜" }
+      - { name: "にんじん", amount: "1本", section: "野菜" }
+      - { name: "玉ねぎ", amount: "2個", section: "野菜" }
+      - { name: "カレールー", amount: "1箱", section: "調味料" }
+
+  - name: "ハヤシライス"
+    category: "main"
+    effort: "easy"
+    time_minutes: 20
+    tags: ["洋食", "市販の素"]
+    ingredients:
+      - { name: "牛こま切れ", amount: "300g", section: "肉" }
+      - { name: "玉ねぎ", amount: "2個", section: "野菜" }
+      - { name: "マッシュルーム", amount: "1パック", section: "野菜" }
+      - { name: "ハヤシライスルー", amount: "1箱", section: "調味料" }
+
+  - name: "タッカルビ"
+    category: "main"
+    effort: "easy"
+    time_minutes: 20
+    tags: ["韓国", "市販の素"]
+    ingredients:
+      - { name: "鶏もも肉", amount: "300g", section: "肉" }
       - { name: "キャベツ", amount: "1/4個", section: "野菜" }
-      - { name: "もやし", amount: "1袋", section: "野菜" }
-      - { name: "にんじん", amount: "1/2本", section: "野菜" }
+      - { name: "玉ねぎ", amount: "1個", section: "野菜" }
+      - { name: "ピザ用チーズ", amount: "適量", section: "卵・乳製品" }
+      - { name: "タッカルビの素", amount: "1袋", section: "調味料" }
 
-  # === お惣菜（買ってくるだけ・調理時間0分）===
-  - name: "お惣菜コロッケ"
+  - name: "トッポギ"
     category: "main"
     effort: "easy"
-    time_minutes: 0
-    tags: ["お惣菜", "子供好き"]
+    time_minutes: 15
+    tags: ["韓国", "市販の素"]
     ingredients:
-      - { name: "コロッケ", amount: "4個", section: "お惣菜" }
+      - { name: "トッポギセット（餅+ソース）", amount: "1袋", section: "その他" }
+      - { name: "ウィンナー", amount: "1袋", section: "肉加工品" }
+      - { name: "ゆで卵", amount: "3個", section: "卵・乳製品" }
 
-  - name: "お惣菜唐揚げ"
-    category: "main"
-    effort: "easy"
-    time_minutes: 0
-    tags: ["お惣菜", "子供好き"]
-    ingredients:
-      - { name: "唐揚げ", amount: "1パック", section: "お惣菜" }
-
-  - name: "焼き鳥（お惣菜）"
+  # =========================================
+  #  メイン：お惣菜（買ってくるだけ）
+  # =========================================
+  - name: "チキンカツ"
     category: "main"
     effort: "easy"
     time_minutes: 0
     tags: ["お惣菜"]
     ingredients:
-      - { name: "焼き鳥", amount: "8本", section: "お惣菜" }
+      - { name: "チキンカツ", amount: "3枚", section: "お惣菜" }
 
-  - name: "刺身盛り合わせ"
+  - name: "刺身"
     category: "main"
     effort: "easy"
     time_minutes: 0
-    tags: ["お惣菜", "魚", "ヘルシー"]
+    tags: ["お惣菜", "魚"]
     ingredients:
       - { name: "刺身盛り合わせ", amount: "1パック", section: "お惣菜" }
 
-  - name: "ポテトサラダ（お惣菜）"
+  - name: "焼き魚"
+    category: "main"
+    effort: "easy"
+    time_minutes: 0
+    tags: ["お惣菜", "魚"]
+    ingredients:
+      - { name: "焼き魚", amount: "3切れ", section: "お惣菜" }
+
+  - name: "うなぎ"
+    category: "main"
+    effort: "easy"
+    time_minutes: 0
+    tags: ["お惣菜", "魚"]
+    seasons: ["summer"]
+    ingredients:
+      - { name: "うなぎ蒲焼き", amount: "2尾", section: "お惣菜" }
+
+  - name: "コロッケ"
+    category: "main"
+    effort: "easy"
+    time_minutes: 0
+    tags: ["お惣菜"]
+    ingredients:
+      - { name: "コロッケ", amount: "6個", section: "お惣菜" }
+
+  - name: "メンチカツ"
+    category: "main"
+    effort: "easy"
+    time_minutes: 0
+    tags: ["お惣菜"]
+    ingredients:
+      - { name: "メンチカツ", amount: "3個", section: "お惣菜" }
+
+  # =========================================
+  #  サラダ（毎食必ず1品）
+  # =========================================
+  - name: "レタスサラダ"
+    category: "salad"
+    effort: "easy"
+    time_minutes: 5
+    tags: ["定番"]
+    ingredients:
+      - { name: "レタス", amount: "1玉", section: "野菜" }
+      - { name: "トマト", amount: "2個", section: "野菜" }
+      - { name: "きゅうり", amount: "1本", section: "野菜" }
+      - { name: "アボカド", amount: "1個", section: "野菜" }
+
+  - name: "もやしのナムル"
+    category: "salad"
+    effort: "easy"
+    time_minutes: 10
+    tags: ["韓国"]
+    ingredients:
+      - { name: "もやし", amount: "1袋", section: "野菜" }
+      - { name: "ごま油", amount: "適量", section: "調味料" }
+
+  - name: "キュウリのナムル"
+    category: "salad"
+    effort: "easy"
+    time_minutes: 5
+    tags: ["韓国"]
+    ingredients:
+      - { name: "きゅうり", amount: "3本", section: "野菜" }
+      - { name: "ごま油", amount: "適量", section: "調味料" }
+
+  - name: "カプレーゼ"
+    category: "salad"
+    effort: "easy"
+    time_minutes: 5
+    tags: ["イタリアン"]
+    seasons: ["summer"]
+    ingredients:
+      - { name: "トマト", amount: "2個", section: "野菜" }
+      - { name: "モッツァレラチーズ", amount: "1個", section: "卵・乳製品" }
+      - { name: "バジル", amount: "適量", section: "野菜" }
+      - { name: "オリーブオイル", amount: "適量", section: "調味料" }
+
+  # --- 旬のサラダ ---
+  - name: "大根サラダ"
+    category: "salad"
+    effort: "easy"
+    time_minutes: 5
+    tags: ["和風"]
+    seasons: ["autumn", "winter"]
+    ingredients:
+      - { name: "大根", amount: "1/3本", section: "野菜" }
+      - { name: "かいわれ大根", amount: "1パック", section: "野菜" }
+      - { name: "かつお節", amount: "1パック", section: "乾物" }
+
+  - name: "春キャベツのサラダ"
+    category: "salad"
+    effort: "easy"
+    time_minutes: 5
+    tags: ["和風"]
+    seasons: ["spring"]
+    ingredients:
+      - { name: "キャベツ", amount: "1/4個", section: "野菜" }
+      - { name: "塩昆布", amount: "適量", section: "乾物" }
+      - { name: "ごま油", amount: "適量", section: "調味料" }
+
+  - name: "水菜サラダ"
+    category: "salad"
+    effort: "easy"
+    time_minutes: 5
+    tags: ["和風"]
+    seasons: ["winter"]
+    ingredients:
+      - { name: "水菜", amount: "1袋", section: "野菜" }
+      - { name: "ツナ缶", amount: "1缶", section: "缶詰" }
+
+  # =========================================
+  #  副菜（時間に余裕があれば）
+  # =========================================
+  - name: "フライドポテト"
+    category: "side"
+    effort: "easy"
+    time_minutes: 10
+    tags: ["市販の素"]
+    ingredients:
+      - { name: "冷凍フライドポテト", amount: "1袋", section: "冷凍食品" }
+
+  - name: "ポテトサラダ"
     category: "side"
     effort: "easy"
     time_minutes: 0
-    tags: ["お惣菜", "子供好き"]
+    tags: ["お惣菜"]
     ingredients:
       - { name: "ポテトサラダ", amount: "1パック", section: "お惣菜" }
 
-  - name: "ひじき煮（お惣菜）"
+  - name: "マカロニサラダ"
     category: "side"
     effort: "easy"
     time_minutes: 0
-    tags: ["お惣菜", "ヘルシー"]
+    tags: ["お惣菜"]
     ingredients:
-      - { name: "ひじき煮", amount: "1パック", section: "お惣菜" }
+      - { name: "マカロニサラダ", amount: "1パック", section: "お惣菜" }
 
-  # === 副菜 ===
-  - name: "ポテトサラダ"
-    category: "side"
-    effort: "normal"
-    time_minutes: 25
-    tags: ["定番", "子供好き", "作り置き可"]
-    ingredients:
-      - { name: "じゃがいも", amount: "3個", section: "野菜" }
-      - { name: "きゅうり", amount: "1本", section: "野菜" }
-      - { name: "ハム", amount: "3枚", section: "肉加工品" }
-      - { name: "マヨネーズ", amount: "適量", section: "調味料" }
-
-  - name: "ほうれん草のおひたし"
+  - name: "キムチ"
     category: "side"
     effort: "easy"
-    time_minutes: 10
-    tags: ["和食", "簡単", "ヘルシー"]
+    time_minutes: 0
+    tags: ["韓国", "お惣菜"]
     ingredients:
-      - { name: "ほうれん草", amount: "1束", section: "野菜" }
-      - { name: "かつお節", amount: "1パック", section: "乾物" }
+      - { name: "キムチ", amount: "1パック", section: "お惣菜" }
 
-  - name: "きんぴらごぼう"
-    category: "side"
-    effort: "easy"
-    time_minutes: 15
-    tags: ["和食", "作り置き可"]
-    ingredients:
-      - { name: "ごぼう", amount: "1本", section: "野菜" }
-      - { name: "にんじん", amount: "1/2本", section: "野菜" }
-
-  - name: "冷奴"
+  # --- 旬の副菜 ---
+  - name: "枝豆"
     category: "side"
     effort: "easy"
     time_minutes: 5
-    tags: ["簡単", "ヘルシー"]
+    tags: ["おつまみ"]
+    seasons: ["summer"]
     ingredients:
-      - { name: "豆腐", amount: "1丁", section: "豆腐" }
-      - { name: "長ねぎ", amount: "少々", section: "野菜" }
-      - { name: "かつお節", amount: "1パック", section: "乾物" }
+      - { name: "枝豆（冷凍可）", amount: "1袋", section: "冷凍食品" }
 
-  - name: "ひじきの煮物"
-    category: "side"
-    effort: "easy"
-    time_minutes: 20
-    tags: ["和食", "ヘルシー", "作り置き可"]
-    ingredients:
-      - { name: "乾燥ひじき", amount: "20g", section: "乾物" }
-      - { name: "にんじん", amount: "1/2本", section: "野菜" }
-      - { name: "油揚げ", amount: "1枚", section: "豆腐" }
-
-  - name: "コールスロー"
+  - name: "きのこソテー"
     category: "side"
     effort: "easy"
     time_minutes: 10
-    tags: ["洋食", "簡単"]
+    tags: ["洋食"]
+    seasons: ["autumn"]
     ingredients:
-      - { name: "キャベツ", amount: "1/4個", section: "野菜" }
-      - { name: "にんじん", amount: "1/3本", section: "野菜" }
-      - { name: "コーン缶", amount: "1缶", section: "缶詰" }
+      - { name: "しめじ", amount: "1パック", section: "野菜" }
+      - { name: "エリンギ", amount: "1パック", section: "野菜" }
+      - { name: "バター", amount: "適量", section: "卵・乳製品" }
 
-  - name: "かぼちゃの煮物"
+  - name: "さつまいもの甘煮"
     category: "side"
-    effort: "easy"
-    time_minutes: 20
-    tags: ["和食", "子供好き"]
-    ingredients:
-      - { name: "かぼちゃ", amount: "1/4個", section: "野菜" }
-
-  - name: "酢の物"
-    category: "side"
-    effort: "easy"
-    time_minutes: 10
-    tags: ["和食", "ヘルシー"]
-    ingredients:
-      - { name: "きゅうり", amount: "2本", section: "野菜" }
-      - { name: "わかめ", amount: "適量", section: "乾物" }
-
-  # === 汁物 ===
-  - name: "味噌汁（豆腐・わかめ）"
-    category: "soup"
-    effort: "easy"
-    time_minutes: 10
-    tags: ["和食", "定番"]
-    ingredients:
-      - { name: "豆腐", amount: "1/2丁", section: "豆腐" }
-      - { name: "わかめ", amount: "適量", section: "乾物" }
-      - { name: "味噌", amount: "適量", section: "調味料" }
-
-  - name: "味噌汁（なめこ）"
-    category: "soup"
-    effort: "easy"
-    time_minutes: 10
-    tags: ["和食"]
-    ingredients:
-      - { name: "なめこ", amount: "1袋", section: "野菜" }
-      - { name: "豆腐", amount: "1/2丁", section: "豆腐" }
-      - { name: "味噌", amount: "適量", section: "調味料" }
-
-  - name: "味噌汁（大根・油揚げ）"
-    category: "soup"
-    effort: "easy"
-    time_minutes: 10
-    tags: ["和食"]
-    ingredients:
-      - { name: "大根", amount: "1/4本", section: "野菜" }
-      - { name: "油揚げ", amount: "1枚", section: "豆腐" }
-      - { name: "味噌", amount: "適量", section: "調味料" }
-
-  - name: "コンソメスープ"
-    category: "soup"
     effort: "easy"
     time_minutes: 15
-    tags: ["洋食"]
+    tags: ["和食"]
+    seasons: ["autumn", "winter"]
     ingredients:
-      - { name: "玉ねぎ", amount: "1/2個", section: "野菜" }
-      - { name: "にんじん", amount: "1/3本", section: "野菜" }
-      - { name: "コンソメ", amount: "2個", section: "調味料" }
+      - { name: "さつまいも", amount: "1本", section: "野菜" }
 
-  - name: "豚汁"
-    category: "soup"
-    effort: "normal"
-    time_minutes: 25
-    tags: ["和食", "ボリューム"]
-    ingredients:
-      - { name: "豚バラ薄切り", amount: "150g", section: "肉" }
-      - { name: "大根", amount: "1/4本", section: "野菜" }
-      - { name: "にんじん", amount: "1/2本", section: "野菜" }
-      - { name: "ごぼう", amount: "1/2本", section: "野菜" }
-      - { name: "こんにゃく", amount: "1/2枚", section: "その他" }
-      - { name: "味噌", amount: "適量", section: "調味料" }
-
-  - name: "卵スープ"
-    category: "soup"
+  - name: "ほうれん草のごまあえ"
+    category: "side"
     effort: "easy"
     time_minutes: 10
-    tags: ["中華", "簡単"]
+    tags: ["和食"]
+    seasons: ["winter"]
     ingredients:
-      - { name: "卵", amount: "2個", section: "卵・乳製品" }
-      - { name: "長ねぎ", amount: "少々", section: "野菜" }
+      - { name: "ほうれん草", amount: "1束", section: "野菜" }
+      - { name: "すりごま", amount: "適量", section: "乾物" }
+
+  - name: "冷やしトマト"
+    category: "side"
+    effort: "easy"
+    time_minutes: 0
+    tags: ["簡単"]
+    seasons: ["summer"]
+    ingredients:
+      - { name: "トマト", amount: "2個", section: "野菜" }
 
 # --- 献立生成ルール ---
 rules:
-  # 同じ主菜は週に1回まで
   max_same_main_per_week: 1
-  # 同じカテゴリ（肉/魚）が連続しない
   avoid_consecutive_same_protein: true
-  # 平日は調理時間の合計を30分以内に
   weekday_max_total_time_minutes: 30
-  # 週に最低1回は魚料理
   min_fish_per_week: 1
-  # 手間のかかる料理は週末に
-  hard_dishes_on_weekend_only: true
+  prefer_seasonal: true
 
 # --- Googleカレンダー設定 ---
 google_calendar:
   calendar_id: "primary"
   credentials_file: "credentials.json"
   token_file: "token.json"
-  # カレンダーに登録する時間帯
   dinner_time: "18:00"
   event_duration_minutes: 60
-  # イベントの色（1-11のGoogleカレンダーカラーID）
-  event_color_id: "6"  # オレンジ
+  event_color_id: "6"

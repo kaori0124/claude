@@ -13,10 +13,11 @@ class Ingredient:
 @dataclass
 class Dish:
     name: str
-    category: str  # main / side / soup
-    effort: str  # easy / normal / hard
+    category: str  # main / salad / side
+    effort: str  # easy / normal
     time_minutes: int
     tags: list[str] = field(default_factory=list)
+    seasons: list[str] = field(default_factory=list)
     ingredients: list[Ingredient] = field(default_factory=list)
 
     @classmethod
@@ -28,31 +29,31 @@ class Dish:
         return cls(
             name=data["name"],
             category=data["category"],
-            effort=data.get("effort", "normal"),
-            time_minutes=data.get("time_minutes", 30),
+            effort=data.get("effort", "easy"),
+            time_minutes=data.get("time_minutes", 0),
             tags=data.get("tags", []),
+            seasons=data.get("seasons", []),
             ingredients=ingredients,
         )
 
 
 @dataclass
 class MealSlot:
-    """一食分の献立（主菜 + 副菜 + 汁物 など）"""
-
-    date: str  # YYYY-MM-DD
-    day_of_week: str  # 月〜日
+    date: str
+    day_of_week: str
     main: Dish | None = None
-    sides: list[Dish] = field(default_factory=list)
-    soup: Dish | None = None
+    salad: Dish | None = None
+    side: Dish | None = None
 
     @property
     def all_dishes(self) -> list[Dish]:
         dishes = []
         if self.main:
             dishes.append(self.main)
-        dishes.extend(self.sides)
-        if self.soup:
-            dishes.append(self.soup)
+        if self.salad:
+            dishes.append(self.salad)
+        if self.side:
+            dishes.append(self.side)
         return dishes
 
     @property
@@ -70,10 +71,10 @@ class MealSlot:
         parts = []
         if self.main:
             parts.append(self.main.name)
-        for side in self.sides:
-            parts.append(side.name)
-        if self.soup:
-            parts.append(self.soup.name)
+        if self.salad:
+            parts.append(self.salad.name)
+        if self.side:
+            parts.append(self.side.name)
         return " / ".join(parts)
 
 

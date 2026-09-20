@@ -72,18 +72,19 @@ def sync_to_calendar(
         summary = f"🍽 {meal.summary()}"
 
         description_lines = [
-            f"📅 {meal.date}（{meal.day_of_week}）の夕食",
+            f"📅 {meal.date}（{meal.day_of_week}）の晩ごはん",
             "",
         ]
         if meal.main:
-            description_lines.append(f"🥘 主菜: {meal.main.name}")
-        for i, side in enumerate(meal.sides):
-            description_lines.append(f"🥗 副菜{i + 1}: {side.name}")
-        if meal.soup:
-            description_lines.append(f"🍲 汁物: {meal.soup.name}")
+            description_lines.append(f"🥘 メイン: {meal.main.name}")
+        if meal.salad:
+            description_lines.append(f"🥗 サラダ: {meal.salad.name}")
+        if meal.side:
+            description_lines.append(f"🍽 副菜: {meal.side.name}")
 
         description_lines.append("")
-        description_lines.append(f"⏱ 調理時間目安: 約{meal.total_time}分")
+        time_label = f"約{meal.total_time}分" if meal.total_time > 0 else "調理なし"
+        description_lines.append(f"⏱ 調理時間目安: {time_label}")
 
         if meal.all_ingredients:
             description_lines.append("")

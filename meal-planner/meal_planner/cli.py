@@ -6,15 +6,19 @@ import argparse
 import json
 import random
 import sys
-from datetime import date, timedelta
+from datetime import date
 from pathlib import Path
 
 import yaml
 
 from .calendar_sync import clear_meal_events, sync_to_calendar
-from .models import Dish, WeeklyPlan
-from .planner import generate_weekly_plan
+from .models import Dish, MealSlot, WeeklyPlan
+from .planner import MONTH_TO_SEASON, generate_weekly_plan
 from .shopping import format_shopping_list, generate_shopping_list
+
+SEASON_JA = {
+    "spring": "春", "summer": "夏", "autumn": "秋", "winter": "冬",
+}
 
 
 def load_config(config_path: str) -> dict:
@@ -32,24 +36,27 @@ def load_dishes(config: dict) -> list[Dish]:
 
 def format_weekly_plan(plan: WeeklyPlan) -> str:
     lines = []
-    lines.append("")
-    lines.append("=" * 50)
-    lines.append("  1週間の献立")
-    lines.append("=" * 50)
+    if plan.meals:
+        month = int(plan.meals[0].date.split("-")[1])
+        season = MONTH_TO_SEASON.get(month, "spring")
+        season_ja = SEASON_JA.get(season, "")
+        lines.append("")
+        lines.append("=" * 50)
+        lines.append(f"  今週の献立（{season_ja}メニュー）")
+        lines.append("=" * 50)
 
     for meal in plan.meals:
-        is_weekend = meal.day_of_week in ("土", "日")
-        marker = "🏠" if is_weekend else "📅"
         lines.append("")
-        lines.append(f"{marker} {meal.date}（{meal.day_of_week}）")
+        lines.append(f"📅 {meal.date}（{meal.day_of_week}）")
         lines.append("-" * 40)
         if meal.main:
-            lines.append(f"  🥘 主菜: {meal.main.name}")
-        for i, side in enumerate(meal.sides):
-            lines.append(f"  🥗 副菜{i + 1}: {side.name}")
-        if meal.soup:
-            lines.append(f"  🍲 汁物: {meal.soup.name}")
-        lines.append(f"  ⏱  調理時間: 約{meal.total_time}分")
+            lines.append(f"  🥘 メイン: {meal.main.name}")
+        if meal.salad:
+            lines.append(f"  🥗 サラダ: {meal.salad.name}")
+        if meal.side:
+            lines.append(f"  🍽  副菜:  {meal.side.name}")
+        time_label = f"約{meal.total_time}分" if meal.total_time > 0 else "調理なし"
+        lines.append(f"  ⏱  調理: {time_label}")
 
     lines.append("")
     return "\n".join(lines)
@@ -58,8 +65,6 @@ def format_weekly_plan(plan: WeeklyPlan) -> str:
 def cmd_generate(args, config: dict):
     dishes = load_dishes(config)
     rules = config.get("rules", {})
-    meals_config = config.get("meals", {})
-    dishes_per_meal = meals_config.get("dishes_per_meal", {})
 
     if args.seed is not None:
         random.seed(args.seed)
@@ -68,7 +73,7 @@ def cmd_generate(args, config: dict):
     if args.start_date:
         start = date.fromisoformat(args.start_date)
 
-    plan = generate_weekly_plan(dishes, rules, start, dishes_per_meal)
+    plan = generate_weekly_plan(dishes, rules, start)
 
     print(format_weekly_plan(plan))
 
@@ -84,8 +89,8 @@ def cmd_generate(args, config: dict):
                     "date": m.date,
                     "day_of_week": m.day_of_week,
                     "main": m.main.name if m.main else None,
-                    "sides": [s.name for s in m.sides],
-                    "soup": m.soup.name if m.soup else None,
+                    "salad": m.salad.name if m.salad else None,
+                    "side": m.side.name if m.side else None,
                     "total_time": m.total_time,
                 }
                 for m in plan.meals
@@ -102,8 +107,6 @@ def cmd_generate(args, config: dict):
 def cmd_calendar(args, config: dict):
     dishes = load_dishes(config)
     rules = config.get("rules", {})
-    meals_config = config.get("meals", {})
-    dishes_per_meal = meals_config.get("dishes_per_meal", {})
     cal_config = config.get("google_calendar", {})
 
     if args.seed is not None:
@@ -113,7 +116,7 @@ def cmd_calendar(args, config: dict):
     if args.start_date:
         start = date.fromisoformat(args.start_date)
 
-    plan = generate_weekly_plan(dishes, rules, start, dishes_per_meal)
+    plan = generate_weekly_plan(dishes, rules, start)
 
     print(format_weekly_plan(plan))
 
@@ -151,17 +154,14 @@ def cmd_shopping(args, config: dict):
     dish_map = {d.name: d for d in dishes}
 
     plan = WeeklyPlan()
-    from .models import MealSlot
-
     for m in plan_data["meals"]:
         slot = MealSlot(date=m["date"], day_of_week=m["day_of_week"])
         if m.get("main") and m["main"] in dish_map:
             slot.main = dish_map[m["main"]]
-        slot.sides = [
-            dish_map[s] for s in m.get("sides", []) if s in dish_map
-        ]
-        if m.get("soup") and m["soup"] in dish_map:
-            slot.soup = dish_map[m["soup"]]
+        if m.get("salad") and m["salad"] in dish_map:
+            slot.salad = dish_map[m["salad"]]
+        if m.get("side") and m["side"] in dish_map:
+            slot.side = dish_map[m["side"]]
         plan.meals.append(slot)
 
     shopping = generate_shopping_list(plan)
@@ -170,7 +170,7 @@ def cmd_shopping(args, config: dict):
 
 def main():
     parser = argparse.ArgumentParser(
-        description="🍽 献立プランナー - 1週間の献立を自動生成",
+        description="🍽 献立プランナー - 平日5日分の献立を自動生成",
         formatter_class=argparse.RawDescriptionHelpFormatter,
         epilog="""
 使い方の例:
@@ -184,10 +184,7 @@ def main():
     python -m meal_planner calendar --dry-run
 
   Googleカレンダーに登録:
-    python -m meal_planner calendar
-
-  保存した献立から買い物リストを出力:
-    python -m meal_planner shopping plan.json
+    python -m meal_planner calendar --clear
         """,
     )
     parser.add_argument(
@@ -198,7 +195,7 @@ def main():
 
     subparsers = parser.add_subparsers(dest="command", help="コマンド")
 
-    gen = subparsers.add_parser("generate", help="1週間の献立を生成")
+    gen = subparsers.add_parser("generate", help="平日5日分の献立を生成")
     gen.add_argument(
         "--start-date", help="開始日 (YYYY-MM-DD)。省略時は次の月曜日"
     )
