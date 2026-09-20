@@ -72,8 +72,9 @@ def generate_weekly_plan(
             candidates = [c for c in candidates if c.effort != "hard"]
 
         if not weekend:
-            time_budget = weekday_max_time - 20
-            fast = [c for c in candidates if c.time_minutes <= time_budget]
+            soup_time = 10
+            main_budget = weekday_max_time - soup_time
+            fast = [c for c in candidates if c.time_minutes <= main_budget]
             if fast:
                 candidates = fast
 
@@ -128,9 +129,9 @@ def generate_weekly_plan(
         # --- 汁物を選ぶ ---
         available_soups = list(soups)
         if not weekend:
-            quick_soups = [s for s in available_soups if s.time_minutes <= 15]
-            if quick_soups:
-                available_soups = quick_soups
+            available_soups = [
+                s for s in available_soups if s.time_minutes <= remaining_time
+            ]
         random.shuffle(available_soups)
         if available_soups:
             slot.soup = available_soups[0]

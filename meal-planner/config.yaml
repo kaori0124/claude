@@ -183,6 +183,55 @@ dishes:
       - { name: "もやし", amount: "1袋", section: "野菜" }
       - { name: "にんじん", amount: "1/2本", section: "野菜" }
 
+  # === お惣菜（買ってくるだけ・調理時間0分）===
+  - name: "お惣菜コロッケ"
+    category: "main"
+    effort: "easy"
+    time_minutes: 0
+    tags: ["お惣菜", "子供好き"]
+    ingredients:
+      - { name: "コロッケ", amount: "4個", section: "お惣菜" }
+
+  - name: "お惣菜唐揚げ"
+    category: "main"
+    effort: "easy"
+    time_minutes: 0
+    tags: ["お惣菜", "子供好き"]
+    ingredients:
+      - { name: "唐揚げ", amount: "1パック", section: "お惣菜" }
+
+  - name: "焼き鳥（お惣菜）"
+    category: "main"
+    effort: "easy"
+    time_minutes: 0
+    tags: ["お惣菜"]
+    ingredients:
+      - { name: "焼き鳥", amount: "8本", section: "お惣菜" }
+
+  - name: "刺身盛り合わせ"
+    category: "main"
+    effort: "easy"
+    time_minutes: 0
+    tags: ["お惣菜", "魚", "ヘルシー"]
+    ingredients:
+      - { name: "刺身盛り合わせ", amount: "1パック", section: "お惣菜" }
+
+  - name: "ポテトサラダ（お惣菜）"
+    category: "side"
+    effort: "easy"
+    time_minutes: 0
+    tags: ["お惣菜", "子供好き"]
+    ingredients:
+      - { name: "ポテトサラダ", amount: "1パック", section: "お惣菜" }
+
+  - name: "ひじき煮（お惣菜）"
+    category: "side"
+    effort: "easy"
+    time_minutes: 0
+    tags: ["お惣菜", "ヘルシー"]
+    ingredients:
+      - { name: "ひじき煮", amount: "1パック", section: "お惣菜" }
+
   # === 副菜 ===
   - name: "ポテトサラダ"
     category: "side"
@@ -329,8 +378,8 @@ rules:
   max_same_main_per_week: 1
   # 同じカテゴリ（肉/魚）が連続しない
   avoid_consecutive_same_protein: true
-  # 平日は調理時間の合計を60分以内に
-  weekday_max_total_time_minutes: 60
+  # 平日は調理時間の合計を30分以内に
+  weekday_max_total_time_minutes: 30
   # 週に最低1回は魚料理
   min_fish_per_week: 1
   # 手間のかかる料理は週末に
