@@ -86,6 +86,15 @@ def sync_to_calendar(
         time_label = f"約{meal.total_time}分" if meal.total_time > 0 else "調理なし"
         description_lines.append(f"⏱ 調理時間目安: {time_label}")
 
+        recipes = [
+            d for d in meal.all_dishes if d.recipe_url
+        ]
+        if recipes:
+            description_lines.append("")
+            description_lines.append("📖 レシピ:")
+            for d in recipes:
+                description_lines.append(f"  {d.name}: {d.recipe_url}")
+
         if meal.all_ingredients:
             description_lines.append("")
             description_lines.append("📝 材料:")

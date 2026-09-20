@@ -50,11 +50,14 @@ def format_weekly_plan(plan: WeeklyPlan) -> str:
         lines.append(f"📅 {meal.date}（{meal.day_of_week}）")
         lines.append("-" * 40)
         if meal.main:
-            lines.append(f"  🥘 メイン: {meal.main.name}")
+            url = f"  {meal.main.recipe_url}" if meal.main.recipe_url else ""
+            lines.append(f"  🥘 メイン: {meal.main.name}{url}")
         if meal.salad:
-            lines.append(f"  🥗 サラダ: {meal.salad.name}")
+            url = f"  {meal.salad.recipe_url}" if meal.salad.recipe_url else ""
+            lines.append(f"  🥗 サラダ: {meal.salad.name}{url}")
         if meal.side:
-            lines.append(f"  🍽  副菜:  {meal.side.name}")
+            url = f"  {meal.side.recipe_url}" if meal.side.recipe_url else ""
+            lines.append(f"  🍽  副菜:  {meal.side.name}{url}")
         time_label = f"約{meal.total_time}分" if meal.total_time > 0 else "調理なし"
         lines.append(f"  ⏱  調理: {time_label}")
 

@@ -18,6 +18,7 @@ class Dish:
     time_minutes: int
     tags: list[str] = field(default_factory=list)
     seasons: list[str] = field(default_factory=list)
+    recipe_url: str = ""
     ingredients: list[Ingredient] = field(default_factory=list)
 
     @classmethod
@@ -33,6 +34,7 @@ class Dish:
             time_minutes=data.get("time_minutes", 0),
             tags=data.get("tags", []),
             seasons=data.get("seasons", []),
+            recipe_url=data.get("recipe_url", ""),
             ingredients=ingredients,
         )
 
