@@ -373,6 +373,16 @@ dishes:
     ingredients:
       - { name: "トマト", amount: "2個", section: "野菜" }
 
+# --- 参照レシピサイト ---
+# 各料理の recipe_url にレシピを貼るときの参照先
+recipe_sites:
+  - name: "クックパッド"
+    url: "https://cookpad.com/jp"
+  - name: "クラシル"
+    url: "https://www.kurashiru.com/"
+  - name: "つきの家族食堂"
+    url: "https://ameblo.jp/mamagohann/"
+
 # --- 献立生成ルール ---
 rules:
   max_same_main_per_week: 1
