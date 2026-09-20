@@ -29,7 +29,7 @@ dishes:
     effort: "easy"
     time_minutes: 15
     tags: ["中華"]
-    recipe_url: ""  # ← ここにレシピURLを貼る
+    recipe_url: "https://www.kurashiru.com/recipes/526122c8-e194-4c9c-8dde-7c7fe6ca705d"
     ingredients:
       - { name: "牛肉（細切り用）", amount: "250g", section: "肉" }
       - { name: "ピーマン", amount: "4個", section: "野菜" }
@@ -40,6 +40,7 @@ dishes:
     effort: "normal"
     time_minutes: 25
     tags: ["和食", "定番"]
+    recipe_url: "https://cookpad.com/jp/recipes/17564487"
     ingredients:
       - { name: "豚バラ薄切り", amount: "250g", section: "肉" }
       - { name: "じゃがいも", amount: "3個", section: "野菜" }
@@ -52,6 +53,7 @@ dishes:
     effort: "easy"
     time_minutes: 20
     tags: ["洋食"]
+    recipe_url: "https://www.kurashiru.com/recipes/d37333ad-a61c-4ee7-8a2e-f74095f90798"
     ingredients:
       - { name: "卵", amount: "6個", section: "卵・乳製品" }
       - { name: "じゃがいも", amount: "2個", section: "野菜" }
@@ -63,6 +65,7 @@ dishes:
     effort: "normal"
     time_minutes: 25
     tags: ["定番"]
+    recipe_url: "https://www.kurashiru.com/recipes/ae5e646d-1f80-4bf1-9ba5-0ad9a2b062e5"
     ingredients:
       - { name: "鶏もも肉", amount: "2枚(500g)", section: "肉" }
       - { name: "しょうが", amount: "1かけ", section: "野菜" }
@@ -75,6 +78,7 @@ dishes:
     time_minutes: 20
     tags: ["魚", "ヘルシー"]
     seasons: ["autumn", "winter"]
+    recipe_url: "https://cookpad.com/jp/recipes/19368756"
     ingredients:
       - { name: "鮭切り身", amount: "3切れ", section: "魚" }
       - { name: "えのき", amount: "1袋", section: "野菜" }
@@ -86,6 +90,7 @@ dishes:
     effort: "easy"
     time_minutes: 15
     tags: ["丼もの", "定番"]
+    recipe_url: "https://www.kurashiru.com/recipes/7628f8b7-9226-493d-9a7d-f0bcd4ddf156"
     ingredients:
       - { name: "牛こま切れ", amount: "300g", section: "肉" }
       - { name: "玉ねぎ", amount: "1個", section: "野菜" }
@@ -110,6 +115,7 @@ dishes:
     effort: "easy"
     time_minutes: 15
     tags: ["中華", "市販の素"]
+    recipe_url: "https://cookpad.com/jp/recipes/18556435"
     ingredients:
       - { name: "豚ひき肉", amount: "200g", section: "肉" }
       - { name: "豆腐", amount: "2丁", section: "豆腐" }
@@ -143,6 +149,7 @@ dishes:
     effort: "easy"
     time_minutes: 20
     tags: ["韓国", "市販の素"]
+    recipe_url: "https://www.kurashiru.com/recipes/e246f553-24cf-4fbb-999f-21e92b45fbda"
     ingredients:
       - { name: "鶏もも肉", amount: "300g", section: "肉" }
       - { name: "キャベツ", amount: "1/4個", section: "野菜" }
@@ -155,6 +162,7 @@ dishes:
     effort: "easy"
     time_minutes: 15
     tags: ["韓国", "市販の素"]
+    recipe_url: "https://www.kurashiru.com/recipes/d572c24a-673a-4a30-bfba-668852b81c82"
     ingredients:
       - { name: "トッポギセット（餅+ソース）", amount: "1袋", section: "その他" }
       - { name: "ウィンナー", amount: "1袋", section: "肉加工品" }
@@ -231,6 +239,7 @@ dishes:
     effort: "easy"
     time_minutes: 10
     tags: ["韓国"]
+    recipe_url: "https://cookpad.com/jp/recipes/19184061"
     ingredients:
       - { name: "もやし", amount: "1袋", section: "野菜" }
       - { name: "ごま油", amount: "適量", section: "調味料" }
@@ -240,6 +249,7 @@ dishes:
     effort: "easy"
     time_minutes: 5
     tags: ["韓国"]
+    recipe_url: "https://www.kurashiru.com/recipes/f05ad29a-5a77-4c9f-bf00-916560d4e2ec"
     ingredients:
       - { name: "きゅうり", amount: "3本", section: "野菜" }
       - { name: "ごま油", amount: "適量", section: "調味料" }
@@ -250,6 +260,7 @@ dishes:
     time_minutes: 5
     tags: ["イタリアン"]
     seasons: ["summer"]
+    recipe_url: "https://cookpad.com/jp/recipes/19886927"
     ingredients:
       - { name: "トマト", amount: "2個", section: "野菜" }
       - { name: "モッツァレラチーズ", amount: "1個", section: "卵・乳製品" }
@@ -263,6 +274,7 @@ dishes:
     time_minutes: 5
     tags: ["和風"]
     seasons: ["autumn", "winter"]
+    recipe_url: "https://www.kurashiru.com/recipes/64a16a00-4a56-4602-8309-efa92e7531ee"
     ingredients:
       - { name: "大根", amount: "1/3本", section: "野菜" }
       - { name: "かいわれ大根", amount: "1パック", section: "野菜" }
@@ -274,6 +286,7 @@ dishes:
     time_minutes: 5
     tags: ["和風"]
     seasons: ["spring"]
+    recipe_url: "https://cookpad.com/jp/recipes/17539500"
     ingredients:
       - { name: "キャベツ", amount: "1/4個", section: "野菜" }
       - { name: "塩昆布", amount: "適量", section: "乾物" }
@@ -285,6 +298,7 @@ dishes:
     time_minutes: 5
     tags: ["和風"]
     seasons: ["winter"]
+    recipe_url: "https://cookpad.com/jp/recipes/17979686"
     ingredients:
       - { name: "水菜", amount: "1袋", section: "野菜" }
       - { name: "ツナ缶", amount: "1缶", section: "缶詰" }
@@ -340,6 +354,7 @@ dishes:
     time_minutes: 10
     tags: ["洋食"]
     seasons: ["autumn"]
+    recipe_url: "https://www.kurashiru.com/recipes/115f92f8-e31d-404f-84eb-18ece269a33c"
     ingredients:
       - { name: "しめじ", amount: "1パック", section: "野菜" }
       - { name: "エリンギ", amount: "1パック", section: "野菜" }
@@ -351,6 +366,7 @@ dishes:
     time_minutes: 15
     tags: ["和食"]
     seasons: ["autumn", "winter"]
+    recipe_url: "https://www.kurashiru.com/recipes/27112167-6db9-4fab-9240-14bc43d6d488"
     ingredients:
       - { name: "さつまいも", amount: "1本", section: "野菜" }
 
@@ -360,6 +376,7 @@ dishes:
     time_minutes: 10
     tags: ["和食"]
     seasons: ["winter"]
+    recipe_url: "https://cookpad.com/jp/recipes/18256184"
     ingredients:
       - { name: "ほうれん草", amount: "1束", section: "野菜" }
       - { name: "すりごま", amount: "適量", section: "乾物" }
