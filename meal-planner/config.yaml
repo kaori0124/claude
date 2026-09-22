@@ -107,6 +107,80 @@ dishes:
       - { name: "豆腐", amount: "1丁", section: "豆腐" }
       - { name: "鍋つゆ", amount: "1袋", section: "調味料" }
 
+  - name: "ハンバーグ"
+    category: "main"
+    effort: "normal"
+    time_minutes: 25
+    tags: ["洋食", "定番"]
+    recipe_url: "https://www.kurashiru.com/recipes/e2cce605-8d80-4312-b8af-2098d87f8122"
+    ingredients:
+      - { name: "合いびき肉", amount: "300g", section: "肉" }
+      - { name: "玉ねぎ", amount: "1個", section: "野菜" }
+      - { name: "卵", amount: "1個", section: "卵・乳製品" }
+      - { name: "パン粉", amount: "大さじ3", section: "乾物" }
+
+  - name: "肉団子スープ"
+    category: "main"
+    effort: "normal"
+    time_minutes: 25
+    tags: ["中華", "スープ"]
+    recipe_url: "https://www.kurashiru.com/recipes/370e811c-4fb4-47e7-9fa9-05a0a1107b31"
+    ingredients:
+      - { name: "豚ひき肉", amount: "250g", section: "肉" }
+      - { name: "白菜", amount: "1/4個", section: "野菜" }
+      - { name: "春雨", amount: "1袋", section: "乾物" }
+      - { name: "しいたけ", amount: "4個", section: "野菜" }
+      - { name: "しょうが", amount: "1かけ", section: "野菜" }
+
+  - name: "ねぎ塩チキン"
+    category: "main"
+    effort: "easy"
+    time_minutes: 15
+    tags: ["定番"]
+    recipe_url: "https://www.kurashiru.com/recipes/2aa07e67-df15-4b74-b410-15cc62e2e3c1"
+    ingredients:
+      - { name: "鶏もも肉", amount: "2枚(500g)", section: "肉" }
+      - { name: "長ねぎ", amount: "1本", section: "野菜" }
+      - { name: "レモン汁", amount: "適量", section: "調味料" }
+
+  - name: "豚肉と野菜のオイスター炒め"
+    category: "main"
+    effort: "easy"
+    time_minutes: 15
+    tags: ["中華"]
+    recipe_url: "https://www.kurashiru.com/recipes/67b8c436-8bf3-4d97-b627-3d5cb84f4554"
+    ingredients:
+      - { name: "豚バラ薄切り", amount: "250g", section: "肉" }
+      - { name: "キャベツ", amount: "1/4個", section: "野菜" }
+      - { name: "ピーマン", amount: "3個", section: "野菜" }
+      - { name: "にんじん", amount: "1/2本", section: "野菜" }
+
+  - name: "ガパオライス"
+    category: "main"
+    effort: "easy"
+    time_minutes: 15
+    tags: ["エスニック", "丼もの"]
+    recipe_url: "https://www.kurashiru.com/recipes/ac07168d-b09f-4aad-b9ec-0f1daa87f023"
+    ingredients:
+      - { name: "鶏ひき肉", amount: "250g", section: "肉" }
+      - { name: "赤パプリカ", amount: "1個", section: "野菜" }
+      - { name: "玉ねぎ", amount: "1/2個", section: "野菜" }
+      - { name: "卵", amount: "3個", section: "卵・乳製品" }
+      - { name: "バジル", amount: "適量", section: "野菜" }
+
+  - name: "フォー"
+    category: "main"
+    effort: "easy"
+    time_minutes: 15
+    tags: ["エスニック", "麺類"]
+    recipe_url: "https://www.kurashiru.com/recipes/cbb0c054-0a40-4d9d-92b6-d6c95aa9d7f5"
+    ingredients:
+      - { name: "フォー（乾麺）", amount: "200g", section: "乾物" }
+      - { name: "鶏むね肉", amount: "200g", section: "肉" }
+      - { name: "もやし", amount: "1袋", section: "野菜" }
+      - { name: "パクチー", amount: "適量", section: "野菜" }
+      - { name: "レモン", amount: "1個", section: "野菜" }
+
   # =========================================
   #  メイン：市販の素を使うもの
   # =========================================
