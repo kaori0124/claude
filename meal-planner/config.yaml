@@ -342,18 +342,6 @@ dishes:
       - { name: "オリーブオイル", amount: "適量", section: "調味料" }
 
   # --- 旬のサラダ ---
-  - name: "大根サラダ"
-    category: "salad"
-    effort: "easy"
-    time_minutes: 5
-    tags: ["和風"]
-    seasons: ["autumn", "winter"]
-    recipe_url: "https://www.kurashiru.com/recipes/64a16a00-4a56-4602-8309-efa92e7531ee"
-    ingredients:
-      - { name: "大根", amount: "1/3本", section: "野菜" }
-      - { name: "かいわれ大根", amount: "1パック", section: "野菜" }
-      - { name: "かつお節", amount: "1パック", section: "乾物" }
-
   - name: "春キャベツのサラダ"
     category: "salad"
     effort: "easy"
