@@ -1,0 +1,800 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="robots" content="noindex, nofollow, noarchive, nosnippet, noimageindex">
+  <meta name="googlebot" content="noindex, nofollow">
+  <meta property="og:title" content="生成AIとは">
+  <meta property="og:description" content="生成AIの意味・従来のAIとの違い・仕組み・4つの種類・メリット・注意点を、身近な例とビジュアルで図解します。">
+  <meta property="og:type" content="article">
+  <title>生成AIとは</title>
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><defs><linearGradient id='g' x1='0' y1='0' x2='1' y2='0'><stop offset='0' stop-color='%232BA0E2'/><stop offset='1' stop-color='%2337AABA'/></linearGradient></defs><rect width='100' height='100' rx='22' fill='url(%23g)'/><rect x='24' y='30' width='52' height='34' rx='5' fill='%23FFFFFF'/><rect x='32' y='39' width='26' height='4' rx='2' fill='%232BA0E2'/><rect x='32' y='48' width='36' height='4' rx='2' fill='%2337AABA'/><rect x='42' y='68' width='16' height='4' rx='2' fill='%23FFFFFF'/></svg>">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700;900&family=Raleway:wght@600;700&display=swap" rel="stylesheet">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            smo: {
+              bg: '#F8F8F9',
+              surface: '#FFFFFF',
+              band: '#EBF1F8',
+              soft: '#E2EBEF',
+              border: '#E6E6E6',
+              accent: '#2BA0E2',
+              teal: '#37AABA',
+              navy: '#00314E',
+              text: '#333333',
+              muted: '#555555',
+              dim: '#767F88',
+              positive: '#2E9E79',
+              negative: '#E2685E',
+              warning: '#E8A33D',
+            }
+          },
+          fontFamily: {
+            sans: ['"Noto Sans JP"', '"Hiragino Sans"', '"Hiragino Kaku Gothic ProN"', '"Yu Gothic UI"', '"Meiryo"', 'sans-serif'],
+            display: ['"Raleway"', '"Noto Sans JP"', 'sans-serif'],
+          }
+        }
+      }
+    }
+  </script>
+  <style>
+    @media print {
+      .no-print { display: none !important; }
+      body { border-top: none !important; }
+      .rounded-xl { break-inside: avoid; }
+      .md\:flex-row { flex-direction: row !important; }
+      .md\:hidden { display: none !important; }
+      .hidden.md\:block { display: block !important; }
+      .md\:grid-cols-2 { grid-template-columns: repeat(2, minmax(0, 1fr)) !important; }
+      .sm\:grid-cols-3 { grid-template-columns: repeat(3, minmax(0, 1fr)) !important; }
+      .md\:mb-20 { margin-bottom: 5rem !important; }
+      .md\:py-16 { padding-top: 4rem !important; padding-bottom: 4rem !important; }
+      .bg-clip-text.text-transparent {
+        -webkit-background-clip: initial !important;
+        background-clip: initial !important;
+        color: #2BA0E2 !important;
+        -webkit-text-fill-color: #2BA0E2 !important;
+      }
+    }
+  </style>
+</head>
+<body class="bg-smo-bg text-smo-text antialiased leading-relaxed">
+  <header class="bg-white border-b border-smo-border">
+    <div class="no-print max-w-6xl mx-auto px-5 h-14 flex items-center justify-end">
+      <button onclick="window.print()" class="flex items-center gap-1.5 text-xs text-smo-muted hover:text-smo-accent transition-colors cursor-pointer">
+        <i data-lucide="download" class="w-3.5 h-3.5"></i>
+        PDF
+      </button>
+    </div>
+  </header>
+  <div class="h-1.5 bg-gradient-to-r from-smo-accent to-smo-teal"></div>
+  <main class="max-w-6xl mx-auto px-5 py-12 md:py-16">
+<!-- CONTENT_START -->
+
+<!-- ============================================================ -->
+<!--  HERO                                                        -->
+<!-- ============================================================ -->
+<div class="text-center mb-10 md:mb-14">
+  <p class="inline-block text-xs font-bold text-smo-accent bg-smo-band rounded-full px-4 py-1.5 mb-5">テクノロジー</p>
+  <h1 class="text-3xl md:text-5xl font-bold text-smo-navy leading-snug mb-5">生成AIとは</h1>
+  <div class="w-20 h-1 rounded-full bg-gradient-to-r from-smo-accent to-smo-teal mx-auto mb-6"></div>
+  <p class="text-base text-smo-muted max-w-2xl mx-auto leading-relaxed">
+    「生成AIって、今までのAIと何が違うの？」<br>
+    ニュースで毎日のように聞く言葉を、ひとことで言うと ──
+  </p>
+</div>
+
+
+<!-- ============================================================ -->
+<!--  ONE-PAGE SUMMARY                                             -->
+<!-- ============================================================ -->
+<div class="bg-smo-surface border border-smo-border rounded-2xl p-6 md:p-10 mb-6">
+  <div class="text-center mb-8 md:mb-10">
+    <p class="text-sm font-bold text-smo-muted mb-3">＼ ひとことで言うと ／</p>
+    <p class="text-xl md:text-2xl font-bold text-smo-navy mb-2">
+      生成AI = 学んだパターンから<span class="text-smo-accent">「新しいもの」を作る</span>AI
+    </p>
+    <p class="text-sm text-smo-muted">
+      文章・画像・音声・動画など、これまでになかったコンテンツを指示ひとつで生み出す
+    </p>
+  </div>
+
+  <!-- Core flow -->
+  <div class="flex flex-col md:flex-row items-center justify-center gap-2 md:gap-0 mb-8">
+    <div class="flex flex-col items-center w-36 p-3">
+      <div class="w-14 h-14 rounded-xl bg-smo-accent/10 border border-smo-accent/20 flex items-center justify-center mb-2.5">
+        <i data-lucide="message-square-text" class="w-7 h-7 text-smo-navy"></i>
+      </div>
+      <div class="font-bold text-smo-text text-sm">あなたの指示</div>
+      <div class="text-[11px] text-smo-navy/70 mt-0.5">「お礼メールを書いて」</div>
+    </div>
+
+    <div class="flex items-center justify-center md:w-16 py-1 md:py-0">
+      <div class="flex flex-col items-center gap-0.5">
+        <span class="text-[9px] font-medium text-smo-navy">プロンプト</span>
+        <i data-lucide="arrow-right" class="w-5 h-5 text-smo-navy hidden md:block"></i>
+        <i data-lucide="arrow-down" class="w-5 h-5 text-smo-navy md:hidden"></i>
+      </div>
+    </div>
+
+    <div class="flex flex-col items-center w-44 p-4 bg-smo-accent/5 border-2 border-smo-accent/20 rounded-xl">
+      <div class="w-16 h-16 rounded-xl bg-smo-accent/15 border-2 border-smo-accent/30 flex items-center justify-center mb-2.5">
+        <i data-lucide="sparkles" class="w-8 h-8 text-smo-accent"></i>
+      </div>
+      <div class="font-bold text-smo-accent text-base">生成AI</div>
+      <div class="text-[11px] text-smo-muted mt-0.5 mb-2">膨大なデータから学んだ<br>「パターン」で組み立てる</div>
+      <div class="text-[10px] text-smo-muted bg-white rounded-lg px-2.5 py-1 border border-smo-border/50">レシピを覚えた料理人役</div>
+    </div>
+
+    <div class="flex items-center justify-center md:w-16 py-1 md:py-0">
+      <div class="flex flex-col items-center gap-0.5">
+        <span class="text-[9px] font-medium text-smo-navy">生成</span>
+        <i data-lucide="arrow-right" class="w-5 h-5 text-smo-navy hidden md:block"></i>
+        <i data-lucide="arrow-down" class="w-5 h-5 text-smo-navy md:hidden"></i>
+      </div>
+    </div>
+
+    <div class="flex flex-col items-center w-36 p-3">
+      <div class="w-14 h-14 rounded-xl bg-smo-teal/15 border border-smo-teal/30 flex items-center justify-center mb-2.5">
+        <i data-lucide="file-text" class="w-7 h-7 text-smo-positive"></i>
+      </div>
+      <div class="font-bold text-smo-text text-sm">新しいコンテンツ</div>
+      <div class="text-[11px] text-smo-positive/80 mt-0.5">世界に一つの文面</div>
+    </div>
+  </div>
+
+  <div class="flex justify-center mb-8">
+    <div class="flex items-center gap-2 text-xs text-smo-positive bg-smo-teal/10 border border-smo-teal/25 rounded-full px-4 py-1.5">
+      <i data-lucide="corner-down-left" class="w-3.5 h-3.5"></i>
+      コピペではなく、その場で「新しく」組み立てた結果が返ってくる
+    </div>
+  </div>
+
+  <p class="text-center text-sm font-bold text-smo-muted mb-5">＼ 仕事のこんな場面で使われている ／</p>
+
+  <div class="flex flex-wrap justify-center gap-2">
+    <div class="flex items-center gap-1.5 bg-white border border-smo-border rounded-full px-3.5 py-1.5 text-xs text-smo-text">
+      <i data-lucide="mail" class="w-3.5 h-3.5 text-smo-accent"></i>
+      メールの下書き
+    </div>
+    <div class="flex items-center gap-1.5 bg-white border border-smo-border rounded-full px-3.5 py-1.5 text-xs text-smo-text">
+      <i data-lucide="list-checks" class="w-3.5 h-3.5 text-smo-teal"></i>
+      議事録の要約
+    </div>
+    <div class="flex items-center gap-1.5 bg-white border border-smo-border rounded-full px-3.5 py-1.5 text-xs text-smo-text">
+      <i data-lucide="image" class="w-3.5 h-3.5 text-smo-navy"></i>
+      資料用のイラスト
+    </div>
+    <div class="flex items-center gap-1.5 bg-white border border-smo-border rounded-full px-3.5 py-1.5 text-xs text-smo-text">
+      <i data-lucide="languages" class="w-3.5 h-3.5 text-smo-accent"></i>
+      翻訳
+    </div>
+  </div>
+</div>
+
+<p class="text-center text-smo-muted mb-2">
+  ここから先で、この仕組みをひとつずつ丁寧に解説していきます。
+</p>
+<p class="text-center text-xs text-smo-dim mb-16 md:mb-20">元記事: <a href="https://www.ai-souken.com/article/ai-generation-overview" class="underline decoration-smo-dim/30 hover:text-smo-navy transition-colors">AI総合研究所 — 生成AIとは？その種類や従来のAIとの違い、メリット・事例を専門家が紹介！</a></p>
+
+
+<!-- ============================================================ -->
+<!--  SECTION 1: 従来のAIとの違い                                   -->
+<!-- ============================================================ -->
+<section class="mb-16 md:mb-20">
+  <div class="text-center mb-10">
+    <p class="font-display text-sm font-bold text-smo-accent tracking-[0.25em] mb-2">01</p>
+    <h2 class="text-2xl md:text-3xl font-bold text-smo-navy leading-snug mb-4">従来のAIと何が違う？</h2>
+    <div class="w-16 h-1 rounded-full bg-gradient-to-r from-smo-accent to-smo-teal mx-auto"></div>
+  </div>
+
+  <p class="mb-8 leading-relaxed">
+    AIは以前から身近にありました。違いは「何を出してくるか」です。料理にたとえると、はっきり分かれます。
+  </p>
+
+  <!-- 料理のたとえ図 -->
+  <div class="bg-smo-surface border border-smo-border rounded-xl p-6 md:p-8 mb-8">
+    <h3 class="text-lg font-bold text-smo-text text-center mb-8">料理で考える2つのAI</h3>
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+      <div class="bg-smo-navy/5 border border-smo-navy/15 rounded-xl p-5 text-center">
+        <div class="w-12 h-12 rounded-full bg-smo-navy/10 flex items-center justify-center mx-auto mb-3">
+          <i data-lucide="search-check" class="w-6 h-6 text-smo-navy"></i>
+        </div>
+        <div class="font-bold text-smo-navy mb-1">従来のAI</div>
+        <div class="text-xs text-smo-muted mb-4">味見をして当てる「鑑定士」</div>
+        <div class="flex items-center justify-center gap-2 text-sm">
+          <span class="bg-white border border-smo-border rounded-lg px-3 py-1.5">目の前の料理</span>
+          <i data-lucide="arrow-right" class="w-4 h-4 text-smo-dim"></i>
+          <span class="bg-smo-navy text-white rounded-lg px-3 py-1.5 font-bold">「カレーです」</span>
+        </div>
+      </div>
+      <div class="bg-smo-accent/10 border-2 border-smo-accent/30 rounded-xl p-5 text-center">
+        <div class="w-12 h-12 rounded-full bg-smo-accent/20 flex items-center justify-center mx-auto mb-3">
+          <i data-lucide="chef-hat" class="w-6 h-6 text-smo-accent"></i>
+        </div>
+        <div class="font-bold text-smo-accent mb-1">生成AI</div>
+        <div class="text-xs text-smo-muted mb-4">レシピを覚えて作る「料理人」</div>
+        <div class="flex items-center justify-center gap-2 text-sm">
+          <span class="bg-white border border-smo-border rounded-lg px-3 py-1.5">「夏向けカレーを」</span>
+          <i data-lucide="arrow-right" class="w-4 h-4 text-smo-dim"></i>
+          <span class="bg-smo-accent text-white rounded-lg px-3 py-1.5 font-bold">新作カレー</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <p class="mb-8 leading-relaxed">
+    従来のAIは、学んだデータをもとに<strong class="text-smo-text">「分類」や「予測」</strong>をするのが得意でした。一方の生成AIは、学んだ情報をもとに<strong class="text-smo-text">まったく新しいオリジナルのコンテンツを創り出せる</strong>点が決定的に違います。同じ観点で並べてみましょう。
+  </p>
+
+  <!-- 比較表 -->
+  <div class="bg-smo-surface border border-smo-border rounded-xl overflow-hidden mb-3">
+    <div class="grid grid-cols-3 text-sm font-bold">
+      <div class="bg-smo-band px-4 py-3 text-smo-navy">観点</div>
+      <div class="bg-smo-navy/10 px-4 py-3 text-smo-navy">従来のAI</div>
+      <div class="bg-smo-accent/10 px-4 py-3 text-smo-accent">生成AI</div>
+    </div>
+    <div class="grid grid-cols-3 text-sm border-t border-smo-border">
+      <div class="px-4 py-3 font-bold text-smo-text">得意なこと</div>
+      <div class="px-4 py-3 text-smo-muted">見分ける・予測する</div>
+      <div class="px-4 py-3 text-smo-muted"><strong class="text-smo-text">作り出す</strong></div>
+    </div>
+    <div class="grid grid-cols-3 text-sm border-t border-smo-border">
+      <div class="px-4 py-3 font-bold text-smo-text">出てくるもの</div>
+      <div class="px-4 py-3 text-smo-muted">ラベル・数値・判定<br>（「迷惑メール」など）</div>
+      <div class="px-4 py-3 text-smo-muted">文章・画像・音声・動画</div>
+    </div>
+    <div class="grid grid-cols-3 text-sm border-t border-smo-border">
+      <div class="px-4 py-3 font-bold text-smo-text">身近な例</div>
+      <div class="px-4 py-3 text-smo-muted">迷惑メールの振り分け、<br>通販のおすすめ表示</div>
+      <div class="px-4 py-3 text-smo-muted">メール文面の作成、<br>イラスト制作</div>
+    </div>
+    <div class="grid grid-cols-3 text-sm border-t border-smo-border">
+      <div class="px-4 py-3 font-bold text-smo-text">使い方</div>
+      <div class="px-4 py-3 text-smo-muted">目的ごとに専用の仕組みを作る</div>
+      <div class="px-4 py-3 text-smo-muted">言葉で指示すれば<br>一つで色々こなせる</div>
+    </div>
+  </div>
+  <p class="text-xs text-smo-dim text-right mb-8">出典: <a href="https://www.ai-souken.com/article/ai-generation-traditional-ai-differences" class="underline decoration-smo-dim/30 hover:text-smo-navy transition-colors">AI総合研究所 — 生成AIと従来のAIの違いとは？</a></p>
+
+  <div class="bg-smo-accent/5 border border-smo-accent/20 rounded-xl p-5">
+    <div class="flex items-start gap-3">
+      <div class="flex items-center justify-center w-8 h-8 rounded-lg bg-smo-accent/10 flex-shrink-0 mt-0.5">
+        <i data-lucide="lightbulb" class="w-4 h-4 text-smo-accent"></i>
+      </div>
+      <div>
+        <p class="font-bold text-smo-accent mb-1">ここがポイント</p>
+        <p class="text-smo-muted leading-relaxed">
+          どちらが上ということではありません。「この取引は不正っぽいか」を判定するなら従来のAI、「お客さんへの説明文を書く」なら生成AI。<strong class="text-smo-text">目的によって得意分野が違う</strong>、と押さえておきましょう。
+        </p>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- ============================================================ -->
+<!--  SECTION 2: どうやって作っている？                             -->
+<!-- ============================================================ -->
+<section class="mb-16 md:mb-20">
+  <div class="text-center mb-10">
+    <p class="font-display text-sm font-bold text-smo-accent tracking-[0.25em] mb-2">02</p>
+    <h2 class="text-2xl md:text-3xl font-bold text-smo-navy leading-snug mb-4">どうやって「作って」いるの？</h2>
+    <div class="w-16 h-1 rounded-full bg-gradient-to-r from-smo-accent to-smo-teal mx-auto"></div>
+  </div>
+
+  <p class="mb-8 leading-relaxed">
+    文章を作る生成AIの基本は、意外なほどシンプルです。<strong class="text-smo-text">「この次に来そうな言葉はどれか」を予測して、1語ずつつなげていく</strong>。これを高速で何度も繰り返しています。
+  </p>
+
+  <!-- 次の単語予測ミニ図 -->
+  <div class="bg-smo-surface border border-smo-border rounded-xl p-6 md:p-8 mb-8">
+    <h3 class="text-lg font-bold text-smo-text text-center mb-6">「次の言葉」を予測するイメージ</h3>
+    <div class="max-w-xl mx-auto">
+      <div class="bg-smo-bg border border-smo-border rounded-xl px-5 py-4 text-center text-lg font-bold text-smo-navy mb-5">
+        「本日はお忙しいところ ＿＿」
+      </div>
+      <div class="space-y-3">
+        <div class="flex items-center gap-3">
+          <span class="w-28 text-sm text-smo-text font-bold flex-shrink-0">ありがとう</span>
+          <div class="flex-1 h-5 bg-smo-band rounded-full overflow-hidden"><div class="h-full w-4/5 bg-gradient-to-r from-smo-accent to-smo-teal rounded-full"></div></div>
+          <span class="w-12 text-xs text-smo-accent font-bold text-right">高い</span>
+        </div>
+        <div class="flex items-center gap-3">
+          <span class="w-28 text-sm text-smo-text flex-shrink-0">恐縮ですが</span>
+          <div class="flex-1 h-5 bg-smo-band rounded-full overflow-hidden"><div class="h-full w-1/3 bg-smo-teal/60 rounded-full"></div></div>
+          <span class="w-12 text-xs text-smo-muted text-right">中</span>
+        </div>
+        <div class="flex items-center gap-3">
+          <span class="w-28 text-sm text-smo-text flex-shrink-0">バナナ</span>
+          <div class="flex-1 h-5 bg-smo-band rounded-full overflow-hidden"><div class="h-full w-[3%] bg-smo-dim/50 rounded-full"></div></div>
+          <span class="w-12 text-xs text-smo-dim text-right">ほぼ0</span>
+        </div>
+      </div>
+      <p class="text-xs text-smo-muted text-center mt-5">※ 確率のイメージ図です。実際の数値ではありません</p>
+    </div>
+  </div>
+
+  <p class="mb-8 leading-relaxed">
+    実際に使うときの流れは、次の4ステップです。
+  </p>
+
+  <div class="bg-smo-surface border border-smo-border rounded-xl p-6 md:p-8 mb-8">
+    <h3 class="text-lg font-bold text-smo-text text-center mb-8">学習から出力までの流れ</h3>
+    <div class="flex flex-col md:flex-row items-stretch justify-center gap-3 md:gap-0">
+      <div class="flex-1 bg-smo-accent/10 border border-smo-accent/20 rounded-xl p-4 text-center">
+        <div class="w-8 h-8 rounded-full bg-smo-accent text-white text-sm font-bold flex items-center justify-center mx-auto mb-3">1</div>
+        <i data-lucide="library" class="w-6 h-6 text-smo-navy mx-auto mb-2"></i>
+        <div class="font-bold text-smo-navy text-sm mb-1">大量に学習</div>
+        <div class="text-xs text-smo-muted leading-relaxed">膨大な文章や画像から<br>言葉や形の「パターン」を学ぶ</div>
+      </div>
+      <div class="flex items-center justify-center md:w-10 py-1 md:py-0">
+        <i data-lucide="chevron-right" class="w-5 h-5 text-smo-dim hidden md:block"></i>
+        <i data-lucide="chevron-down" class="w-5 h-5 text-smo-dim md:hidden"></i>
+      </div>
+      <div class="flex-1 bg-smo-teal/15 border border-smo-teal/30 rounded-xl p-4 text-center">
+        <div class="w-8 h-8 rounded-full bg-smo-teal text-white text-sm font-bold flex items-center justify-center mx-auto mb-3">2</div>
+        <i data-lucide="keyboard" class="w-6 h-6 text-smo-positive mx-auto mb-2"></i>
+        <div class="font-bold text-smo-positive text-sm mb-1">指示を受け取る</div>
+        <div class="text-xs text-smo-muted leading-relaxed">あなたの指示文<br>（プロンプト＝AIへの<br>お願いの文章）を読む</div>
+      </div>
+      <div class="flex items-center justify-center md:w-10 py-1 md:py-0">
+        <i data-lucide="chevron-right" class="w-5 h-5 text-smo-dim hidden md:block"></i>
+        <i data-lucide="chevron-down" class="w-5 h-5 text-smo-dim md:hidden"></i>
+      </div>
+      <div class="flex-1 bg-smo-navy/10 border border-smo-navy/20 rounded-xl p-4 text-center">
+        <div class="w-8 h-8 rounded-full bg-smo-navy text-white text-sm font-bold flex items-center justify-center mx-auto mb-3">3</div>
+        <i data-lucide="repeat" class="w-6 h-6 text-smo-navy mx-auto mb-2"></i>
+        <div class="font-bold text-smo-navy text-sm mb-1">予測を繰り返す</div>
+        <div class="text-xs text-smo-muted leading-relaxed">「次に来そうなもの」を<br>選んで少しずつ<br>組み立てる</div>
+      </div>
+      <div class="flex items-center justify-center md:w-10 py-1 md:py-0">
+        <i data-lucide="chevron-right" class="w-5 h-5 text-smo-dim hidden md:block"></i>
+        <i data-lucide="chevron-down" class="w-5 h-5 text-smo-dim md:hidden"></i>
+      </div>
+      <div class="flex-1 bg-smo-accent/10 border border-smo-accent/20 rounded-xl p-4 text-center">
+        <div class="w-8 h-8 rounded-full bg-smo-accent text-white text-sm font-bold flex items-center justify-center mx-auto mb-3">4</div>
+        <i data-lucide="send" class="w-6 h-6 text-smo-navy mx-auto mb-2"></i>
+        <div class="font-bold text-smo-navy text-sm mb-1">結果を返す</div>
+        <div class="text-xs text-smo-muted leading-relaxed">完成した文章や画像を<br>あなたに届ける</div>
+      </div>
+    </div>
+  </div>
+
+  <p class="mb-4 leading-relaxed">
+    実際のチャット画面では、こんなやり取りになります。
+  </p>
+
+  <!-- チャットUIモックアップ -->
+  <div class="max-w-2xl mx-auto rounded-xl overflow-hidden border border-smo-border mb-8">
+    <div class="flex items-center gap-2 bg-smo-navy px-4 py-2.5 text-xs text-white/80">
+      <i data-lucide="bot" class="w-3.5 h-3.5"></i>
+      AIアシスタント
+    </div>
+    <div class="bg-white p-5 space-y-4">
+      <div class="flex justify-end">
+        <div class="bg-smo-accent text-white rounded-2xl rounded-tr-sm px-4 py-2.5 text-sm max-w-md">昨日の打ち合わせのお礼メールを、取引先の山田さん宛に3行で書いてください。</div>
+      </div>
+      <div class="flex items-start gap-2.5">
+        <div class="w-8 h-8 rounded-full bg-smo-teal/20 flex items-center justify-center flex-shrink-0">
+          <i data-lucide="sparkles" class="w-4 h-4 text-smo-positive"></i>
+        </div>
+        <div class="bg-smo-bg border border-smo-border rounded-2xl rounded-tl-sm px-4 py-3 text-sm leading-relaxed max-w-md">
+          山田様<br>
+          昨日はお忙しいところお時間をいただき、ありがとうございました。<br>
+          いただいたご意見をもとに、来週中に改善案をお送りいたします。<br>
+          引き続きどうぞよろしくお願いいたします。
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="bg-smo-warning/5 border border-smo-warning/20 rounded-xl p-5">
+    <div class="flex items-start gap-3">
+      <div class="flex items-center justify-center w-8 h-8 rounded-lg bg-smo-warning/10 flex-shrink-0 mt-0.5">
+        <i data-lucide="info" class="w-4 h-4 text-smo-warning"></i>
+      </div>
+      <div>
+        <p class="font-bold text-smo-warning mb-1">ちょっと補足: 「理解」ではなく「予測」</p>
+        <p class="text-smo-muted leading-relaxed text-sm">
+          生成AIは、人間のように意味を理解して答えているわけではなく、<strong class="text-smo-text">「もっともらしい続き」を確率で選んでいる</strong>のが基本の仕組みです。だからこそ自然な文章が書ける一方で、もっともらしい間違いを書いてしまうこともあります（05で詳しく説明します）。
+        </p>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- ============================================================ -->
+<!--  SECTION 3: 生成AIの種類                                       -->
+<!-- ============================================================ -->
+<section class="mb-16 md:mb-20">
+  <div class="text-center mb-10">
+    <p class="font-display text-sm font-bold text-smo-accent tracking-[0.25em] mb-2">03</p>
+    <h2 class="text-2xl md:text-3xl font-bold text-smo-navy leading-snug mb-4">生成AIの4つの種類</h2>
+    <div class="w-16 h-1 rounded-full bg-gradient-to-r from-smo-accent to-smo-teal mx-auto"></div>
+  </div>
+
+  <p class="mb-8 leading-relaxed">
+    生成AIは、<strong class="text-smo-text">何を作るか</strong>で大きく4つに分けられます。それぞれ、画面ではこんなふうに見えます。
+  </p>
+
+  <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-3">
+    <!-- テキスト -->
+    <div class="bg-smo-surface border border-smo-border rounded-xl overflow-hidden">
+      <div class="bg-smo-band p-5">
+        <div class="bg-white rounded-lg border border-smo-border p-3 space-y-1.5">
+          <div class="h-2 rounded-full bg-smo-navy/30 w-11/12"></div>
+          <div class="h-2 rounded-full bg-smo-navy/20 w-full"></div>
+          <div class="h-2 rounded-full bg-smo-navy/20 w-4/5"></div>
+          <div class="h-2 rounded-full bg-smo-accent/40 w-2/5"></div>
+        </div>
+      </div>
+      <div class="p-5 pt-4">
+        <h3 class="font-bold text-smo-text text-sm mb-2 flex items-center gap-2">
+          <i data-lucide="type" class="w-4 h-4 text-smo-accent"></i> テキスト生成AI
+        </h3>
+        <div class="text-xs text-smo-accent font-medium mb-1">できること</div>
+        <p class="text-sm text-smo-muted leading-relaxed">質問への回答、メールや企画書の下書き、要約、翻訳、プログラムのコード作成など。仕事で最もよく使われるタイプ</p>
+      </div>
+    </div>
+
+    <!-- 画像 -->
+    <div class="bg-smo-surface border border-smo-border rounded-xl overflow-hidden">
+      <div class="bg-smo-band p-5">
+        <div class="grid grid-cols-3 gap-2">
+          <div class="aspect-square rounded-lg bg-gradient-to-br from-smo-accent/40 to-smo-teal/40 flex items-center justify-center"><i data-lucide="mountain" class="w-5 h-5 text-white"></i></div>
+          <div class="aspect-square rounded-lg bg-gradient-to-br from-smo-warning/40 to-smo-negative/30 flex items-center justify-center"><i data-lucide="sun" class="w-5 h-5 text-white"></i></div>
+          <div class="aspect-square rounded-lg bg-gradient-to-br from-smo-teal/40 to-smo-positive/40 flex items-center justify-center"><i data-lucide="trees" class="w-5 h-5 text-white"></i></div>
+        </div>
+      </div>
+      <div class="p-5 pt-4">
+        <h3 class="font-bold text-smo-text text-sm mb-2 flex items-center gap-2">
+          <i data-lucide="image" class="w-4 h-4 text-smo-teal"></i> 画像生成AI
+        </h3>
+        <div class="text-xs text-smo-teal font-medium mb-1">できること</div>
+        <p class="text-sm text-smo-muted leading-relaxed">「夕焼けの海辺で読書する猫」のような言葉や参考画像から、オリジナルのイラスト・写真風の画像を作る</p>
+      </div>
+    </div>
+
+    <!-- 音声 -->
+    <div class="bg-smo-surface border border-smo-border rounded-xl overflow-hidden">
+      <div class="bg-smo-band p-5 flex items-center justify-center gap-3">
+        <div class="w-9 h-9 rounded-full bg-smo-navy flex items-center justify-center flex-shrink-0"><i data-lucide="play" class="w-4 h-4 text-white"></i></div>
+        <div class="flex items-end gap-1 h-10">
+          <div class="w-1.5 h-3 bg-smo-navy/40 rounded-full"></div>
+          <div class="w-1.5 h-6 bg-smo-navy/50 rounded-full"></div>
+          <div class="w-1.5 h-9 bg-smo-accent rounded-full"></div>
+          <div class="w-1.5 h-5 bg-smo-navy/50 rounded-full"></div>
+          <div class="w-1.5 h-8 bg-smo-accent rounded-full"></div>
+          <div class="w-1.5 h-4 bg-smo-navy/40 rounded-full"></div>
+          <div class="w-1.5 h-7 bg-smo-teal rounded-full"></div>
+          <div class="w-1.5 h-3 bg-smo-navy/40 rounded-full"></div>
+          <div class="w-1.5 h-6 bg-smo-teal rounded-full"></div>
+          <div class="w-1.5 h-2 bg-smo-navy/40 rounded-full"></div>
+        </div>
+      </div>
+      <div class="p-5 pt-4">
+        <h3 class="font-bold text-smo-text text-sm mb-2 flex items-center gap-2">
+          <i data-lucide="audio-lines" class="w-4 h-4 text-smo-navy"></i> 音声生成AI
+        </h3>
+        <div class="text-xs text-smo-navy font-medium mb-1">できること</div>
+        <p class="text-sm text-smo-muted leading-relaxed">文章を自然な声で読み上げるナレーション、指示にあわせたBGMや楽曲の作成など</p>
+      </div>
+    </div>
+
+    <!-- 動画 -->
+    <div class="bg-smo-surface border border-smo-border rounded-xl overflow-hidden">
+      <div class="bg-smo-band p-5">
+        <div class="rounded-lg bg-smo-navy aspect-video max-h-24 mx-auto flex flex-col justify-between p-2">
+          <div class="flex-1 flex items-center justify-center"><i data-lucide="clapperboard" class="w-6 h-6 text-white/70"></i></div>
+          <div class="h-1 rounded-full bg-white/20"><div class="h-full w-2/5 rounded-full bg-gradient-to-r from-smo-accent to-smo-teal"></div></div>
+        </div>
+      </div>
+      <div class="p-5 pt-4">
+        <h3 class="font-bold text-smo-text text-sm mb-2 flex items-center gap-2">
+          <i data-lucide="video" class="w-4 h-4 text-smo-negative"></i> 動画生成AI
+        </h3>
+        <div class="text-xs text-smo-negative font-medium mb-1">できること</div>
+        <p class="text-sm text-smo-muted leading-relaxed">テキストや静止画をもとに、動きのある映像を作る。広告やSNS用の短い動画づくりで活用が進む</p>
+      </div>
+    </div>
+  </div>
+  <p class="text-xs text-smo-dim text-right mb-8">出典: <a href="https://www.ai-souken.com/article/recommend-generateive-ai-services-introduction" class="underline decoration-smo-dim/30 hover:text-smo-navy transition-colors">AI総合研究所 — ジャンル別 生成AIのおすすめツール比較</a></p>
+
+  <div class="bg-smo-accent/5 border border-smo-accent/20 rounded-xl p-5">
+    <div class="flex items-start gap-3">
+      <div class="flex items-center justify-center w-8 h-8 rounded-lg bg-smo-accent/10 flex-shrink-0 mt-0.5">
+        <i data-lucide="lightbulb" class="w-4 h-4 text-smo-accent"></i>
+      </div>
+      <div>
+        <p class="font-bold text-smo-accent mb-1">境目はどんどん消えている</p>
+        <p class="text-smo-muted leading-relaxed">
+          最近は、1つのAIが文章も画像も音声も扱える<strong class="text-smo-text">「マルチモーダル（複数の種類のデータを扱えること）」</strong>が当たり前になりつつあります。4種類は「別々の道具」というより、「AIができることの4つの方向」と捉えるとわかりやすいでしょう。
+        </p>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- ============================================================ -->
+<!--  SECTION 4: メリット                                           -->
+<!-- ============================================================ -->
+<section class="mb-16 md:mb-20">
+  <div class="text-center mb-10">
+    <p class="font-display text-sm font-bold text-smo-accent tracking-[0.25em] mb-2">04</p>
+    <h2 class="text-2xl md:text-3xl font-bold text-smo-navy leading-snug mb-4">生成AIを使うとどう嬉しいか</h2>
+    <div class="w-16 h-1 rounded-full bg-gradient-to-r from-smo-accent to-smo-teal mx-auto"></div>
+  </div>
+
+  <p class="mb-8 leading-relaxed">
+    生成AIが一気に広まったのは、2022年11月に対話型AIのChatGPTが公開されてからです。その広がりの速さは数字にも表れています。
+  </p>
+
+  <div class="flex flex-wrap justify-center gap-5 md:gap-8 mb-6">
+    <div class="w-36 h-36 rounded-full bg-white border-2 border-smo-accent flex flex-col items-center justify-center text-center px-3">
+      <span class="text-[11px] text-smo-muted leading-tight mb-1">ChatGPTの<br>公開から</span>
+      <span class="text-3xl font-bold text-smo-accent leading-none">2<span class="text-base">か月</span></span>
+      <span class="text-[11px] text-smo-muted mt-1">で</span>
+    </div>
+    <div class="w-36 h-36 rounded-full bg-white border-2 border-smo-teal flex flex-col items-center justify-center text-center px-3">
+      <span class="text-[11px] text-smo-muted leading-tight mb-1">月間の<br>利用者数が</span>
+      <span class="text-3xl font-bold text-smo-teal leading-none">1<span class="text-base">億人</span></span>
+      <span class="text-[11px] text-smo-muted mt-1">に到達と推計</span>
+    </div>
+    <div class="w-36 h-36 rounded-full bg-white border-2 border-smo-navy flex flex-col items-center justify-center text-center px-3">
+      <span class="text-[11px] text-smo-muted leading-tight mb-1">生成できる<br>コンテンツの種類</span>
+      <span class="text-3xl font-bold text-smo-navy leading-none">4<span class="text-base">分野</span></span>
+      <span class="text-[11px] text-smo-muted mt-1">以上</span>
+    </div>
+  </div>
+  <p class="text-[10px] text-smo-dim text-center mb-10">出典: <a href="https://www.reuters.com/technology/chatgpt-sets-record-fastest-growing-user-base-analyst-note-2023-02-01/" class="underline decoration-smo-dim/30 hover:text-smo-accent transition-colors">Reuters — ChatGPT sets record for fastest-growing user base（UBSのアナリストノート）</a></p>
+
+  <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-3">
+    <div class="flex gap-4 bg-smo-surface border border-smo-border rounded-xl p-5">
+      <div class="w-10 h-10 rounded-lg bg-smo-warning/10 flex items-center justify-center flex-shrink-0">
+        <i data-lucide="timer" class="w-5 h-5 text-smo-warning"></i>
+      </div>
+      <div>
+        <h3 class="font-bold text-smo-text mb-2">作業時間がぐっと減る</h3>
+        <p class="text-sm text-smo-muted leading-relaxed">メールの下書き、議事録の要約、資料のたたき台など、ゼロから書くと30分かかる作業が数分で形になります。人は「確認して仕上げる」ことに時間を使えます。</p>
+      </div>
+    </div>
+    <div class="flex gap-4 bg-smo-surface border border-smo-border rounded-xl p-5">
+      <div class="w-10 h-10 rounded-lg bg-smo-accent/10 flex items-center justify-center flex-shrink-0">
+        <i data-lucide="palette" class="w-5 h-5 text-smo-navy"></i>
+      </div>
+      <div>
+        <h3 class="font-bold text-smo-text mb-2">専門スキルの壁が下がる</h3>
+        <p class="text-sm text-smo-muted leading-relaxed">デザインや翻訳、プログラミングの専門知識がなくても、<strong class="text-smo-text">一定の品質の成果物</strong>をつくれるようになりました。「やりたいけどできない」が減ります。</p>
+      </div>
+    </div>
+    <div class="flex gap-4 bg-smo-surface border border-smo-border rounded-xl p-5">
+      <div class="w-10 h-10 rounded-lg bg-smo-teal/15 flex items-center justify-center flex-shrink-0">
+        <i data-lucide="lightbulb" class="w-5 h-5 text-smo-positive"></i>
+      </div>
+      <div>
+        <h3 class="font-bold text-smo-text mb-2">アイデア出しの相棒になる</h3>
+        <p class="text-sm text-smo-muted leading-relaxed">「企画案を10個出して」と頼めば、一人では思いつかない切り口が並びます。そこから選んで磨くことで、考える時間の質が上がります。</p>
+      </div>
+    </div>
+    <div class="flex gap-4 bg-smo-surface border border-smo-border rounded-xl p-5">
+      <div class="w-10 h-10 rounded-lg bg-smo-navy/10 flex items-center justify-center flex-shrink-0">
+        <i data-lucide="clock" class="w-5 h-5 text-smo-navy"></i>
+      </div>
+      <div>
+        <h3 class="font-bold text-smo-text mb-2">いつでも何度でも頼める</h3>
+        <p class="text-sm text-smo-muted leading-relaxed">夜中でも休日でも、何度書き直しを頼んでも嫌な顔をしません。「こんなこと聞いていいのかな」という質問も気軽にぶつけられます。</p>
+      </div>
+    </div>
+  </div>
+  <p class="text-xs text-smo-dim text-right">出典: <a href="https://www.ai-souken.com/article/ai-generation-pros-cons" class="underline decoration-smo-dim/30 hover:text-smo-navy transition-colors">AI総合研究所 — 生成AIのメリットとデメリットとは？</a></p>
+</section>
+
+
+<!-- ============================================================ -->
+<!--  SECTION 5: よくある誤解と注意点                               -->
+<!-- ============================================================ -->
+<section class="mb-16 md:mb-20">
+  <div class="text-center mb-10">
+    <p class="font-display text-sm font-bold text-smo-accent tracking-[0.25em] mb-2">05</p>
+    <h2 class="text-2xl md:text-3xl font-bold text-smo-navy leading-snug mb-4">よくある誤解と注意点</h2>
+    <div class="w-16 h-1 rounded-full bg-gradient-to-r from-smo-accent to-smo-teal mx-auto"></div>
+  </div>
+
+  <p class="mb-8 leading-relaxed">
+    便利な一方で、仕組みを知らずに使うと思わぬトラブルにつながります。特に仕事で使うときに押さえておきたい3つの誤解を取り上げます。
+  </p>
+
+  <div class="space-y-4">
+    <div class="bg-smo-surface border border-smo-border rounded-xl overflow-hidden">
+      <div class="flex items-center gap-3 px-6 py-4 bg-smo-negative/10 border-b border-smo-border/50">
+        <div class="w-6 h-6 rounded-full bg-smo-negative/10 flex items-center justify-center flex-shrink-0">
+          <i data-lucide="x" class="w-3.5 h-3.5 text-smo-negative"></i>
+        </div>
+        <h3 class="font-bold text-smo-negative text-sm">誤解:「AIが自信満々に答えたことは正しい」</h3>
+      </div>
+      <div class="px-6 py-5">
+        <div class="flex items-start gap-3">
+          <div class="w-6 h-6 rounded-full bg-smo-teal/15 flex items-center justify-center flex-shrink-0 mt-0.5">
+            <i data-lucide="check" class="w-3.5 h-3.5 text-smo-positive"></i>
+          </div>
+          <div>
+            <p class="text-sm font-bold text-smo-positive mb-2">実際は:</p>
+            <p class="text-sm text-smo-muted leading-relaxed">
+              02で見たとおり、生成AIは「もっともらしい続き」を選んでいるだけなので、事実と違う内容をそれらしく書くことがあります。これを<strong class="text-smo-text">ハルシネーション（幻覚）</strong>と呼びます。数字・固有名詞・法律などは、<strong class="text-smo-text">必ず元の情報源で確かめる</strong>のが鉄則です。
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="bg-smo-surface border border-smo-border rounded-xl overflow-hidden">
+      <div class="flex items-center gap-3 px-6 py-4 bg-smo-negative/10 border-b border-smo-border/50">
+        <div class="w-6 h-6 rounded-full bg-smo-negative/10 flex items-center justify-center flex-shrink-0">
+          <i data-lucide="x" class="w-3.5 h-3.5 text-smo-negative"></i>
+        </div>
+        <h3 class="font-bold text-smo-negative text-sm">誤解:「チャットに入力した内容は外に出ない」</h3>
+      </div>
+      <div class="px-6 py-5">
+        <div class="flex items-start gap-3">
+          <div class="w-6 h-6 rounded-full bg-smo-teal/15 flex items-center justify-center flex-shrink-0 mt-0.5">
+            <i data-lucide="check" class="w-3.5 h-3.5 text-smo-positive"></i>
+          </div>
+          <div>
+            <p class="text-sm font-bold text-smo-positive mb-2">実際は:</p>
+            <p class="text-sm text-smo-muted leading-relaxed">
+              サービスや設定によっては、入力した内容がAIの学習に使われる場合があります。顧客情報や社外秘の資料を貼り付ける前に、<strong class="text-smo-text">会社が認めたツールか、社内ルールで入力してよい情報か</strong>を確認しましょう。
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="bg-smo-surface border border-smo-border rounded-xl overflow-hidden">
+      <div class="flex items-center gap-3 px-6 py-4 bg-smo-negative/10 border-b border-smo-border/50">
+        <div class="w-6 h-6 rounded-full bg-smo-negative/10 flex items-center justify-center flex-shrink-0">
+          <i data-lucide="x" class="w-3.5 h-3.5 text-smo-negative"></i>
+        </div>
+        <h3 class="font-bold text-smo-negative text-sm">誤解:「AIが作ったものは自由に使ってよい」</h3>
+      </div>
+      <div class="px-6 py-5">
+        <div class="flex items-start gap-3">
+          <div class="w-6 h-6 rounded-full bg-smo-teal/15 flex items-center justify-center flex-shrink-0 mt-0.5">
+            <i data-lucide="check" class="w-3.5 h-3.5 text-smo-positive"></i>
+          </div>
+          <div>
+            <p class="text-sm font-bold text-smo-positive mb-2">実際は:</p>
+            <p class="text-sm text-smo-muted leading-relaxed">
+              生成された画像や文章が、既存の作品にそっくりになることがあります。その場合、<strong class="text-smo-text">著作権を侵害するおそれ</strong>があります。特に社外に出す広告や資料では、既存の作品に似ていないかを人の目で確認し、各サービスの利用規約も確かめておきましょう。
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <p class="text-xs text-smo-dim text-right mt-3">出典: <a href="https://www.ai-souken.com/article/ai-generation-pros-cons" class="underline decoration-smo-dim/30 hover:text-smo-navy transition-colors">AI総合研究所 — 生成AIのメリットとデメリットとは？</a></p>
+</section>
+
+
+<!-- ============================================================ -->
+<!--  SECTION 6: 進化の流れ                                         -->
+<!-- ============================================================ -->
+<section class="mb-16 md:mb-20">
+  <div class="text-center mb-10">
+    <p class="font-display text-sm font-bold text-smo-accent tracking-[0.25em] mb-2">06</p>
+    <h2 class="text-2xl md:text-3xl font-bold text-smo-navy leading-snug mb-4">ここまでの進化と、これから</h2>
+    <div class="w-16 h-1 rounded-full bg-gradient-to-r from-smo-accent to-smo-teal mx-auto"></div>
+  </div>
+
+  <p class="mb-8 leading-relaxed">
+    生成AIは突然生まれたわけではなく、前の世代の技術を土台に積み重なってきました。大きな節目だけをたどってみましょう。
+  </p>
+
+  <div class="bg-smo-surface border border-smo-border rounded-xl p-6 md:p-8 mb-3">
+    <div class="border-l-2 border-smo-accent/30 ml-3 space-y-7">
+      <div class="relative pl-7">
+        <div class="absolute -left-[9px] top-1 w-4 h-4 rounded-full bg-white border-2 border-smo-accent"></div>
+        <div class="font-display text-sm font-bold text-smo-accent mb-0.5">2014</div>
+        <div class="font-bold text-smo-navy mb-1">GAN（敵対的生成ネットワーク）</div>
+        <p class="text-sm text-smo-muted leading-relaxed">「作る役」と「見破る役」の2つのAIを競わせて、本物そっくりの画像を作れるようになった</p>
+      </div>
+      <div class="relative pl-7">
+        <div class="absolute -left-[9px] top-1 w-4 h-4 rounded-full bg-white border-2 border-smo-teal"></div>
+        <div class="font-display text-sm font-bold text-smo-teal mb-0.5">2017</div>
+        <div class="font-bold text-smo-navy mb-1">Transformer（トランスフォーマー）</div>
+        <p class="text-sm text-smo-muted leading-relaxed">文章の中の言葉どうしの関係をまとめて捉える仕組みが登場。今の文章生成AIの土台になった</p>
+      </div>
+      <div class="relative pl-7">
+        <div class="absolute -left-[9px] top-1 w-4 h-4 rounded-full bg-white border-2 border-smo-navy"></div>
+        <div class="font-display text-sm font-bold text-smo-navy mb-0.5">2022</div>
+        <div class="font-bold text-smo-navy mb-1">画像生成AIと対話型AIが一般に広まる</div>
+        <p class="text-sm text-smo-muted leading-relaxed">拡散モデル（ノイズから少しずつ画像を描き起こす技術）による画像生成と、ChatGPTの公開で、誰でも使える道具になった</p>
+      </div>
+      <div class="relative pl-7">
+        <div class="absolute -left-[9px] top-1 w-4 h-4 rounded-full bg-gradient-to-r from-smo-accent to-smo-teal"></div>
+        <div class="font-display text-sm font-bold text-smo-accent mb-0.5">2025 —</div>
+        <div class="font-bold text-smo-navy mb-1">AIエージェントの時代へ</div>
+        <p class="text-sm text-smo-muted leading-relaxed">質問に答えるだけでなく、調べる・考える・ツールを操作するところまで、<strong class="text-smo-text">仕事の一連の流れを自分で進める</strong>AIエージェントが広がり始めている</p>
+      </div>
+    </div>
+  </div>
+  <p class="text-xs text-smo-dim text-right">出典: <a href="https://www.ai-souken.com/article/ai-generation-history" class="underline decoration-smo-dim/30 hover:text-smo-navy transition-colors">AI総合研究所 — 生成AIの歴史をわかりやすく解説！</a></p>
+</section>
+
+
+<!-- ============================================================ -->
+<!--  SECTION 7: まとめ                                            -->
+<!-- ============================================================ -->
+<section>
+  <div class="text-center mb-10">
+    <p class="font-display text-sm font-bold text-smo-accent tracking-[0.25em] mb-2">07</p>
+    <h2 class="text-2xl md:text-3xl font-bold text-smo-navy leading-snug mb-4">まとめ — 覚えておきたい3つのこと</h2>
+    <div class="w-16 h-1 rounded-full bg-gradient-to-r from-smo-accent to-smo-teal mx-auto"></div>
+  </div>
+
+  <div class="space-y-4 mb-10">
+    <div class="bg-smo-surface border border-smo-border rounded-xl p-6 border-l-4 border-l-smo-accent">
+      <div class="flex items-start gap-4">
+        <div class="font-display text-3xl font-bold text-smo-accent leading-none flex-shrink-0 mt-1">01</div>
+        <div>
+          <h3 class="font-bold text-smo-text mb-2">生成AIは「作る」AI</h3>
+          <p class="text-sm text-smo-muted leading-relaxed">
+            見分けたり予測したりする従来のAIと違い、学んだパターンから文章・画像・音声・動画といった新しいコンテンツを生み出します。
+          </p>
+        </div>
+      </div>
+    </div>
+    <div class="bg-smo-surface border border-smo-border rounded-xl p-6 border-l-4 border-l-smo-teal">
+      <div class="flex items-start gap-4">
+        <div class="font-display text-3xl font-bold text-smo-teal leading-none flex-shrink-0 mt-1">02</div>
+        <div>
+          <h3 class="font-bold text-smo-text mb-2">スピードと「できること」が一気に広がる</h3>
+          <p class="text-sm text-smo-muted leading-relaxed">
+            下書きや要約が数分で終わり、専門スキルがなくても一定品質の成果物がつくれる。人は確認と仕上げ、考えることに時間を使えます。
+          </p>
+        </div>
+      </div>
+    </div>
+    <div class="bg-smo-surface border border-smo-border rounded-xl p-6 border-l-4 border-l-smo-navy">
+      <div class="flex items-start gap-4">
+        <div class="font-display text-3xl font-bold text-smo-navy leading-none flex-shrink-0 mt-1">03</div>
+        <div>
+          <h3 class="font-bold text-smo-text mb-2">最後に責任を持つのは人</h3>
+          <p class="text-sm text-smo-muted leading-relaxed">
+            もっともらしい間違い、情報漏えい、著作権。この3つを意識し、AIの出力は「たたき台」として人が確認してから使いましょう。
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="text-center bg-gradient-to-b from-smo-accent/5 to-transparent border border-smo-accent/10 rounded-xl p-8 md:p-10">
+    <i data-lucide="sparkles" class="w-8 h-8 text-smo-navy mx-auto mb-4"></i>
+    <p class="text-lg font-bold text-smo-text mb-3">生成AIは、使う人の「問い」で力が変わる道具です。</p>
+    <p class="text-smo-muted max-w-lg mx-auto leading-relaxed">
+      まずは、今日書く予定のメール1通を生成AIに下書きしてもらうところから始めてみてください。「どう頼めば、思いどおりのものが返ってくるか」を試すうちに、自分の仕事のどこに使えるかが見えてくるはずです。
+    </p>
+  </div>
+</section>
+
+
+<!-- CONTENT_END -->
+  </main>
+  <footer class="bg-gradient-to-r from-smo-accent to-smo-teal">
+    <div class="max-w-6xl mx-auto px-5 py-10">
+      <p class="text-xs text-white/70 text-center">図解ツールで作成</p>
+    </div>
+  </footer>
+  <script src="https://unpkg.com/lucide@latest"></script>
+  <script>lucide.createIcons();</script>
+</body>
+</html>
