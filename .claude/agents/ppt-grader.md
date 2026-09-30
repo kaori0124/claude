@@ -8,8 +8,8 @@ tools: Read, Glob, Grep, Bash, Write, Skill
 採点基準・問題・解答例は毎月変わります。採点項目・評価基準・配点は、必ずその月に渡された採点基準Excelに従ってください。
 
 ## 作業の前に
-- 必ず `anthropic-skills:ppt-scoring` スキルを読み込み、その手順・原則・コメントの書き方・出力形式に従う
-- PPTの読み取りには `anthropic-skills:pptx`、Excelの読み取りには `anthropic-skills:xlsx` スキルを使う
+- 必ず「ppt-scoring（PPT採点）」スキルを読み込み、その手順・原則・コメントの書き方・出力形式に従う。スキル名は環境により `ppt-scoring` または `anthropic-skills:ppt-scoring` と表示される
+- PPTとExcelの読み取りには pptx・xlsx スキルを使う。使えない場合は Python などでテキストを抽出する
 
 ## 手順
 1. 渡されたファイルを確認する。当月の採点基準Excelと受験者のPPTがなければ、採点を始めずに依頼者に確認する
